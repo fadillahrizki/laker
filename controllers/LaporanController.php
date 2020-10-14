@@ -2,9 +2,16 @@
 
 namespace app\controllers;
 
+use app\models\JenisKasus;
+use app\models\Korban;
 use Yii;
 use app\models\Laporan;
 use app\models\LaporanSearch;
+use app\models\Pelapor;
+use app\models\Terlapor;
+use Exception;
+use yii\db\Connection;
+use yii\debug\models\search\Db;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,6 +34,85 @@ class LaporanController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionDetail($id)
+    {
+        return $this->render('detail', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+
+    function actionBuat(){
+        $request = Yii::$app->request;
+
+        $Pelapor = new Pelapor();
+        $Laporan = new Laporan();
+        $Korban = new Korban();
+        $Terlapor = new Terlapor();
+        $JenisKasus = JenisKasus::find()->all();
+        
+        if(
+            $Pelapor->load($request->post()) &&
+            $Laporan->load($request->post()) &&
+            $Korban->load($request->post()) &&
+            $Terlapor->load($request->post())
+        ){
+            $transaction = \Yii::$app->db->beginTransaction();
+            try{
+                $Pelapor->save();
+                
+                $Laporan->pelapor_id = $Pelapor->id;
+                $Laporan->status = "Belum Diproses";
+                $Laporan->save();
+                
+                $Korban->laporan_id = $Laporan->id;
+                $Korban->save();
+
+                $Terlapor->laporan_id = $Laporan->id;
+                $Terlapor->save();
+                
+                $transaction->commit();
+                Yii::$app->session->addFlash("success", "Pembuatan laporan sukses");
+            }catch(\Exception $e){
+                $transaction->rollback();
+            }
+        }
+
+        return $this->render("buat",[
+            'Pelapor'=>$Pelapor,
+            'Laporan'=>$Laporan,
+            'Korban'=>$Korban,
+            'Terlapor'=>$Terlapor,
+            'JenisKasus'=>$JenisKasus
+        ]);
+    }
+
+    function actionCek(){
+        $request = Yii::$app->request;
+        $Pelapor = new Pelapor();
+
+        if($Pelapor->load($request->post())){
+            $Pelapor = $Pelapor->find()->where(["nomor_hp"=>$Pelapor->nomor_hp])->one();
+
+            if($Pelapor){
+                $Laporans = $Pelapor->laporans;
+            }else{
+                $Pelapor = new Pelapor();
+                $Pelapor->nomor_hp = $request->post('Pelapor')['nomor_hp'];
+                $Laporans = [];
+            }
+
+            return $this->render("cek",[
+                "Pelapor"=>$Pelapor,
+                "Laporans"=>$Laporans
+            ]);
+        }
+
+        return $this->render("cek",[
+            "Pelapor"=>$Pelapor
+        ]);
     }
 
     /**

@@ -12,7 +12,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'is_rahasia')->textInput() ?>
+    <?= $form->field($model, 'is_rahasia')->dropDownList([
+        "Ya"=>"Ya",
+        "Tidak"=>"Tidak",
+    ],['prompt'=>"- Pilih Jawaban -"])->label("Rahasiakan data saya") ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
@@ -20,16 +23,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'usia')->textInput() ?>
 
-    <?= $form->field($model, 'jenis_kelamin')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'jenis_kelamin')->dropDownList([
+        "Laki-laki"=>"Laki-laki",
+        "Perempuan"=>"Perempuan",
+    ],['prompt'=>"- Pilih Jenis Kelamin -"]) ?>
 
     <?= $form->field($model, 'nomor_hp')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'is_korban')->textInput() ?>
+    <?= $form->field($model, 'is_korban')->dropDownList([
+        "Ya"=>"Ya",
+        "Tidak"=>"Tidak",
+    ],['prompt'=>"- Pilih Jawaban -"])->label("Pelapor adalah korban") ?>
 
     <?= $form->field($model, 'hubungan_dengan_korban')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Simpan', ['class' => 'btn shadow-xl bg-highlight']) ?>
+        <?= Html::a('Kembali',['/pelapor'] ,['class' => 'btn shadow-xl bg-orange-dark']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

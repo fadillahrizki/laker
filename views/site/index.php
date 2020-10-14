@@ -2,52 +2,64 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Home';
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+<div class="row text-center mb-0">
+    <a href="/laporan/buat" class="col-6 pr-2">
+        <div class="card card-style mr-0 mb-3">
+            <h1 class="center-text pt-4">
+                <i data-feather="edit-2" 
+                    data-feather-line="1" 
+                    data-feather-size="40" 
+                    data-feather-color="blue2-dark" 
+                    data-feather-bg="blue2-fade-light">
+                </i>
+            </h1>
+            <h4 class="color-theme font-600">Buat Laporan</h4>
+            <p class="font-10 opacity-30 mb-1">Tap untuk melihat</p>
         </div>
-
-    </div>
+    </a>
+    <a href="/laporan/cek" class="col-6 pl-2">
+        <div class="card card-style ml-0 mb-3">
+            <h1 class="center-text pt-4">
+                <i data-feather="search" 
+                    data-feather-line="1" 
+                    data-feather-size="40" 
+                    data-feather-color="green1-dark" 
+                    data-feather-bg="green1-fade-light">
+                </i>
+            </h1>
+            <h4 class="color-theme font-600">Cek Laporan</h4>
+            <p class="font-10 opacity-30 mb-1">Tap untuk melihat</p>
+        </div>
+    </a>
+    <a href="/site/berita" class="col-6 pr-2">
+        <div class="card card-style mr-0 mb-3">
+            <h1 class="center-text pt-4">
+                <i data-feather="file" 
+                    data-feather-line="1" 
+                    data-feather-size="40" 
+                    data-feather-color="magenta1-dark" 
+                    data-feather-bg="magenta1-fade-light">
+                </i>
+            </h1>
+            <h4 class="color-theme font-600">Berita</h4>
+            <p class="font-10 opacity-30 mb-1">Tap untuk melihat</p>
+        </div>
+    </a>
+    <a href="/site/tentang" class="col-6 pl-2">
+        <div class="card card-style ml-0 mb-3">
+            <h1 class="center-text pt-4">
+                <i data-feather="alert-circle" 
+                    data-feather-line="1" 
+                    data-feather-size="40" 
+                    data-feather-color="yellow1-dark" 
+                    data-feather-bg="yellow1-fade-light">
+                </i>
+            </h1>
+            <h4 class="color-theme font-600">Tentang</h4>
+            <p class="font-10 opacity-30 mb-1">Tap untuk melihat</p>
+        </div>
+    </a>
 </div>

@@ -116,13 +116,11 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
+    function actionBerita(){
+        return $this->render("berita");
+    }
+
+    function actionTentang(){
+        return $this->render("tentang");
     }
 }

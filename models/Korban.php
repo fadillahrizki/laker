@@ -35,9 +35,8 @@ class Korban extends \yii\db\ActiveRecord
         return [
             [['alamat'], 'string'],
             [['usia', 'laporan_id'], 'integer'],
-            [['laporan_id'], 'required'],
+            [['laporan_id','nama','alamat','jenis_kelamin'], 'required'],
             [['nama', 'jenis_kelamin', 'nomor_hp'], 'string', 'max' => 255],
-            [['nomor_hp'], 'unique'],
             [['laporan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Laporan::className(), 'targetAttribute' => ['laporan_id' => 'id']],
         ];
     }

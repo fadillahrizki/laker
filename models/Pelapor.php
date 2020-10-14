@@ -36,10 +36,10 @@ class Pelapor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_rahasia', 'usia', 'is_korban'], 'integer'],
+            [['usia'], 'integer'],
             [['alamat'], 'string'],
             [['nama', 'jenis_kelamin', 'nomor_hp', 'hubungan_dengan_korban'], 'string', 'max' => 255],
-            [['nomor_hp'], 'unique'],
+            [['usia','alamat','nama','jenis_kelamin','is_rahasia','is_korban','nomor_hp'],'required']
         ];
     }
 
@@ -50,13 +50,13 @@ class Pelapor extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'is_rahasia' => 'Is Rahasia',
+            'is_rahasia' => 'Rahasiakan data',
             'nama' => 'Nama',
             'alamat' => 'Alamat',
             'usia' => 'Usia',
             'jenis_kelamin' => 'Jenis Kelamin',
             'nomor_hp' => 'Nomor Hp',
-            'is_korban' => 'Is Korban',
+            'is_korban' => 'Pelapor adalah korban',
             'hubungan_dengan_korban' => 'Hubungan Dengan Korban',
         ];
     }

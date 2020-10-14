@@ -34,7 +34,7 @@ class Laporan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pelapor_id', 'jenis_kasus_id'], 'required'],
+            [['pelapor_id', 'jenis_kasus_id','kronologi'], 'required'],
             [['pelapor_id', 'jenis_kasus_id'], 'integer'],
             [['kronologi'], 'string'],
             [['status'], 'string', 'max' => 255],
@@ -51,7 +51,7 @@ class Laporan extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'pelapor_id' => 'Pelapor ID',
-            'jenis_kasus_id' => 'Jenis Kasus ID',
+            'jenis_kasus_id' => 'Jenis Kasus',
             'kronologi' => 'Kronologi',
             'status' => 'Status',
         ];
@@ -65,6 +65,11 @@ class Laporan extends \yii\db\ActiveRecord
     public function getJenisKasus()
     {
         return $this->hasOne(JenisKasus::className(), ['id' => 'jenis_kasus_id']);
+    }
+
+    public function getKorban()
+    {
+        return $this->hasOne(Korban::className(), ['laporan_id'=>'id']);
     }
 
     /**
@@ -95,5 +100,10 @@ class Laporan extends \yii\db\ActiveRecord
     public function getTerlapors()
     {
         return $this->hasMany(Terlapor::className(), ['laporan_id' => 'id']);
+    }
+
+    public function getTerlapor()
+    {
+        return $this->hasOne(Terlapor::className(), ['laporan_id'=>'id']);
     }
 }

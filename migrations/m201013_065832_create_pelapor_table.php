@@ -14,13 +14,13 @@ class m201013_065832_create_pelapor_table extends Migration
     {
         $this->createTable('{{%pelapor}}', [
             'id' => $this->primaryKey(),
-            'is_rahasia'=>$this->boolean(),
+            'is_rahasia'=>$this->string(),
             'nama'=>$this->string(),
             'alamat'=>$this->text(),
             'usia'=>$this->integer(),
             'jenis_kelamin'=>$this->string(),
-            'nomor_hp'=>$this->string()->unique(),
-            'is_korban'=>$this->boolean(),
+            'nomor_hp'=>$this->string(),
+            'is_korban'=>$this->string(),
             'hubungan_dengan_korban'=>$this->string()
         ]);
     }

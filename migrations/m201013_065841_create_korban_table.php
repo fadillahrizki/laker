@@ -18,7 +18,7 @@ class m201013_065841_create_korban_table extends Migration
             'alamat'=>$this->text(),
             'usia'=>$this->integer(),
             'jenis_kelamin'=>$this->string(),
-            'nomor_hp'=>$this->string()->unique(),
+            'nomor_hp'=>$this->string(),
             'laporan_id'=>$this->integer()->notNull()
         ]);
 
