@@ -114,7 +114,7 @@ class SiteController extends Controller
         return $this->render('contact', [
             'model' => $model,
         ]);
-    }
+    } 
 
     function actionBerita(){
         return $this->render("berita");
