@@ -34,7 +34,7 @@ class Laporan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pelapor_id', 'jenis_kasus_id','kronologi'], 'required'],
+            [['pelapor_id', 'jenis_kasus_id','kronologi'], 'required','message'=>'{attribute} tidak boleh kosong!'],
             [['pelapor_id', 'jenis_kasus_id'], 'integer'],
             [['kronologi'], 'string'],
             [['status'], 'string', 'max' => 255],

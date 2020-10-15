@@ -39,7 +39,7 @@ class Pelapor extends \yii\db\ActiveRecord
             [['usia'], 'integer'],
             [['alamat'], 'string'],
             [['nama', 'jenis_kelamin', 'nomor_hp', 'hubungan_dengan_korban'], 'string', 'max' => 255],
-            [['usia','alamat','nama','jenis_kelamin','is_rahasia','is_korban','nomor_hp'],'required']
+            [['usia','alamat','nama','jenis_kelamin','is_rahasia','is_korban','nomor_hp'],'required','message'=>'{attribute} tidak boleh kosong!']
         ];
     }
 
