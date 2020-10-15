@@ -61,6 +61,12 @@ class LaporanController extends Controller
         ){
             $transaction = \Yii::$app->db->beginTransaction();
             try{
+                $model = Pelapor::find()->where(["nomor_hp"=>$Pelapor->nomor_hp])->one();
+
+                if($model){
+                    $Pelapor = $model;
+                }
+                
                 $Pelapor->save();
                 
                 $Laporan->pelapor_id = $Pelapor->id;
