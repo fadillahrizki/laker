@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 $this->title = "Cek Laporan";
@@ -61,7 +62,7 @@ $form = ActiveForm::begin();
             break;
         }
     ?>
-    <a href="/laporan/detail?id=<?=$laporan->id?>">
+    <a href="<?=Url::to(["/laporan/detail?id=$laporan->id"])?>">
         <div class="card card-style <?=$status?>">
             <div class="content font-700" style="font-size:20px;">
                 <div>ID : <strong><?=$laporan->id?></strong></div>

@@ -2,8 +2,19 @@
     color:red;
 }
 
-input{
-    padding:20px 12px !important;
+input{ 
+   padding:20px 12px !important;
+}
+
+select{
+    box-sizing: content-box;
+    padding:5px 0 !important;
+    font-size: 12px !important;
+}
+
+textarea{
+    padding:12px !important;
+    font-size: 12px !important;
 }
 
 .result{

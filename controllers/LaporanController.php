@@ -73,10 +73,9 @@ class LaporanController extends Controller
                 $Terlapor->laporan_id = $Laporan->id;
                 $Terlapor->save();
                 
-                if($transaction->commit()){
-                    Yii::$app->session->addFlash("success", "Pembuatan laporan sukses");
-
-                }
+                $transaction->commit();
+                
+                Yii::$app->session->addFlash("success", "Pembuatan laporan sukses");
             }catch(\Exception $e){
                 $transaction->rollback();
             }

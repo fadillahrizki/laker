@@ -27,12 +27,12 @@ class AppAsset extends AssetBundle
         'fonts/css/fontawesome-all.min.css'
     ];
     public $js = [
-        'js/jquery.js',
+        // 'js/jquery.js',
         'js/bootstrap.min.js',
         'js/custom.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        // 'yii\bootstrap\BootstrapAsset'
+        'yii\bootstrap\BootstrapAsset',
     ];
 }
