@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->title = "Buat Laporan";
@@ -17,7 +18,6 @@ if($success = Yii::$app->session->getFlash("success")):
 <?php endif;
 $form = ActiveForm::begin();
 ?>
-
 
 <div class="card card-style" id="pelapor">
     <div class="content">
@@ -97,7 +97,7 @@ $form = ActiveForm::begin();
 
 <div class="card card-style">
     <div class="content">
-        <button class="btn btn-block shadow-xl btn-m bg-highlight font-900">Buat Laporan</button>
+        <?= Html::submitButton('Buat Laporan', ['class' => 'btn btn-block shadow-xl btn-m bg-highlight font-900']) ?>
     </div>
 </div>
 
