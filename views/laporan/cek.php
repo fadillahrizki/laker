@@ -10,7 +10,7 @@ $form = ActiveForm::begin();
 
 <div class="card card-style">
     <div class="content">
-        <?= $form->field($Pelapor,'nomor_hp')->textInput(['placeholder'=>"Masukkan nomor hp"])?>
+        <?= $form->field($Pelapor,'nomor_hp')->input('tel',['placeholder'=>"Masukkan nomor hp"])?>
         <button class="btn shadow-xl btn-m bg-highlight font-900">Cari Laporan</button>
     </div>
 </div>

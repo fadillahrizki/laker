@@ -65,7 +65,7 @@ if($success = Yii::$app->session->getFlash("success")):
         <div class="content">
             <div class="form-group" id="nomor_hp" >
                 <label for="">Nomor HP</label>
-                <input type="text" class="form-control" placeholder="Masukkan nomor hp">
+                <input type="tel" class="form-control" placeholder="Masukkan nomor hp">
             </div>
             <div class="form-group d-none" id="otp">
                 <label for="">Kode OTP</label>
@@ -98,7 +98,7 @@ if($success = Yii::$app->session->getFlash("success")):
             "Perempuan"=>"Perempuan",
         ],['class'=>'form-control','prompt'=>"- Pilih -"]) ?>
 
-        <?= $form->field($Pelapor,"nomor_hp")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nomor hp"]) ?>
+        <?= $form->field($Pelapor,"nomor_hp")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan nomor hp"]) ?>
 
         <?= $form->field($Pelapor,"is_korban")->dropDownList([
             "Ya"=>"Ya",
@@ -122,7 +122,7 @@ if($success = Yii::$app->session->getFlash("success")):
             "Perempuan"=>"Perempuan",
         ],['class'=>'form-control','prompt'=>"- Pilih -"]) ?>
 
-        <?= $form->field($Korban,"nomor_hp")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nomor hp (kosongkan jika tidak tahu)"]) ?>
+        <?= $form->field($Korban,"nomor_hp")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan nomor hp (kosongkan jika tidak tahu)"]) ?>
     </div>
 </div>
 
@@ -139,7 +139,7 @@ if($success = Yii::$app->session->getFlash("success")):
             "Perempuan"=>"Perempuan",
         ],['class'=>'form-control','prompt'=>"- Pilih -"]) ?>
 
-        <?= $form->field($Terlapor,"nomor_hp")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nomor hp (kosongkan jika tidak tahu)"]) ?>
+        <?= $form->field($Terlapor,"nomor_hp")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan nomor hp (kosongkan jika tidak tahu)"]) ?>
     </div>
 </div>
 
@@ -187,7 +187,7 @@ if($success = Yii::$app->session->getFlash("success")):
         if(otpInput.value == ""){
             otp.innerHTML = "Mengirim..."
 
-            const json = await fetch(`<?=Url::to("/web/laporan/sendotp")?>?nomor_hp=${phone.value}&action=buat`)
+            const json = await fetch(`<?=Url::to(["laporan/sendotp"])?>?nomor_hp=${phone.value}&action=buat`)
             const res = await json.json()
 
             if(res.sent){
@@ -201,7 +201,7 @@ if($success = Yii::$app->session->getFlash("success")):
         }else{
             otp.innerHTML = "Memverifikasi..."
 
-            const json = await fetch(`<?=Url::to("/web/laporan/otp")?>?nomor_hp=${phone.value}&otp=${otpInput.value}`)
+            const json = await fetch(`<?=Url::to(["laporan/otp"])?>?nomor_hp=${phone.value}&otp=${otpInput.value}`)
             const res = await json.json()
 
             if(res){
