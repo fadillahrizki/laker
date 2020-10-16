@@ -53,7 +53,7 @@ $this->title = 'Home';
         </a>
     </div>
     <div class="col-12">
-        <a href="<?=Url::to(['/site/berita'])?>" class="card card-style mb-3">
+        <a href="https://dpppa.labura.go.id/" class="card card-style mb-3">
             <div class="d-flex pt-3 pb-3">
                 <div class="mt-2 pl-3 ml-2">
                     <h1 class="center-text">
