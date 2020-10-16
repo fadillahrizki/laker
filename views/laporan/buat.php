@@ -1,8 +1,8 @@
 <?php
 
-
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 $this->title = "Buat Laporan";
@@ -16,9 +16,23 @@ if($success = Yii::$app->session->getFlash("success")):
         <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
     </div>    
 
-<?php endif;
-$form = ActiveForm::begin();
-?>
+<?php endif; ?>
+
+<div id="phone">
+    <div class="card card-style">
+        <div class="content">
+            <div class="form-group">
+                <label for="">Nomor HP</label>
+                <input type="text" class="form-control" placeholder="Masukkan nomor hp">
+            </div>
+            <button class="btn shadow-xl btn-m bg-highlight font-900">Kirim OTP</button>
+        </div>
+    </div>
+</div>
+
+<div id="laporan" class="d-none">
+
+<?php $form = ActiveForm::begin();?>
 
 <div class="card card-style" id="pelapor">
     <div class="content">
@@ -62,7 +76,7 @@ $form = ActiveForm::begin();
             "Perempuan"=>"Perempuan",
         ],['class'=>'form-control','prompt'=>"- Pilih -"]) ?>
 
-        <?= $form->field($Korban,"nomor_hp")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nomor hp"]) ?>
+        <?= $form->field($Korban,"nomor_hp")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nomor hp (kosongkan jika tidak tahu)"]) ?>
     </div>
 </div>
 
@@ -79,7 +93,7 @@ $form = ActiveForm::begin();
             "Perempuan"=>"Perempuan",
         ],['class'=>'form-control','prompt'=>"- Pilih -"]) ?>
 
-        <?= $form->field($Terlapor,"nomor_hp")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nomor hp"]) ?>
+        <?= $form->field($Terlapor,"nomor_hp")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nomor hp (kosongkan jika tidak tahu)"]) ?>
     </div>
 </div>
 
@@ -104,7 +118,9 @@ $form = ActiveForm::begin();
 
 <?php ActiveForm::end(); ?>
 
-<script>
+</div>
+
+<script defer>
     var data = {
         nama:'',
         alamat:'',
@@ -112,10 +128,37 @@ $form = ActiveForm::begin();
         jenis_kelamin:'',
         nomor_hp:''
     }
+
+    var parentPhone = document.querySelector("#phone")
+    var otp = parentPhone.querySelector("button")
+
+    otp.addEventListener("click",async function(){
+        var phone = document.querySelector("#phone input")
+        const json = await fetch(`<?=Url::to("/laporan/otp")?>?nomor_hp=${phone.value}`)
+        const  res= await json.json()
+
+        if(res){
+            var laporan = document.querySelector("#laporan")
+
+            if(res.found){
+                var pelapor = document.querySelector("#pelapor")
+                Object.keys(res.data).forEach(key=>{
+                    if(key!="id"){
+                        var input = pelapor.querySelector(`#pelapor-${key}`)
+                        input.value = res.data[key]
+                    }
+                })
+            }
+
+            parentPhone.classList.add("d-none")
+            laporan.classList.remove("d-none")
+        }
+    })
     
     function setKorban(key,value){
         var input = document.getElementsByName(`Korban[${key}]`)[0]
         input.value = value
+
     }
 
     function isKorban(value){

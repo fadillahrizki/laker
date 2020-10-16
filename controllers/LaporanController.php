@@ -15,6 +15,7 @@ use yii\debug\models\search\Db;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * LaporanController implements the CRUD actions for Laporan model.
@@ -43,6 +44,17 @@ class LaporanController extends Controller
         ]);
     }
 
+    function actionOtp($nomor_hp){
+
+        $Pelapor = Pelapor::find()->where(['nomor_hp'=>$nomor_hp])->one();
+        
+        
+        if($Pelapor){  
+            return $this->asJson(['found'=>true,'data'=>$Pelapor]);
+        }
+        
+        return $this->asJson(['found'=>false]);
+    }
 
     function actionBuat(){
         $request = Yii::$app->request;
@@ -66,7 +78,7 @@ class LaporanController extends Controller
                 if($model){
                     $Pelapor = $model;
                 }
-                
+
                 $Pelapor->save();
                 
                 $Laporan->pelapor_id = $Pelapor->id;
