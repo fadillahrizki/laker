@@ -7,9 +7,13 @@ use app\models\Korban;
 use Yii;
 use app\models\Laporan;
 use app\models\LaporanSearch;
+use app\models\Otp;
 use app\models\Pelapor;
 use app\models\Terlapor;
+use DateTime;
+use DateTimeZone;
 use Exception;
+use GuzzleHttp\Client;
 use yii\db\Connection;
 use yii\debug\models\search\Db;
 use yii\web\Controller;
@@ -44,16 +48,81 @@ class LaporanController extends Controller
         ]);
     }
 
-    function actionOtp($nomor_hp){
+    function generateNumericOTP($n) { 
+        $generator = "1357902468"; 
+        $result = ""; 
+      
+        for ($i = 1; $i <= $n; $i++) { 
+            $result .= substr($generator, (rand()%(strlen($generator))), 1); 
+        }  
+        return $result; 
+    } 
 
-        $Pelapor = Pelapor::find()->where(['nomor_hp'=>$nomor_hp])->one();
-        
-        
-        if($Pelapor){  
-            return $this->asJson(['found'=>true,'data'=>$Pelapor]);
+    function actionSendotp($nomor_hp,$action){
+        $tz = 'Asia/Jakarta';
+        $dt = new DateTime("now", new DateTimeZone($tz));
+        $timestamp = $dt->format('Y-m-d H:i:s');
+
+        $expired_date = date("Y-m-d H:i:s",strtotime($timestamp." +2 minutes"));
+
+        $code = $this->generateNumericOTP(4);
+
+        $otp = new Otp;
+
+        $otp->nomor_hp = $nomor_hp;
+        $otp->code = $code;
+        $otp->action = $action;
+        $otp->expired_date = $expired_date;
+
+        if($otp->save()){
+            $pesanOTP = "LAKER LABURA OTP Anda $otp->code, berlaku sampai $otp->expired_date";
+
+            $client = new Client();
+            $res = $client->post('https://masking.zenziva.net/api/sendsms/', [
+                'form_params'=>[
+                    'userkey' => 'dqolhx',
+                    'passkey' => '20j5k6rc051egqbjpkrr-alpha',
+                    'nohp' => $nomor_hp,
+                    'pesan' => $pesanOTP,
+                ]
+            ]);
+
+            $data = json_decode($res->getBody());
+
+            if($data->status == 1){
+                return $this->asJson(['sent'=>true]);
+            }
+
+            return $this->asJson(['sent'=>false]);
         }
-        
-        return $this->asJson(['found'=>false]);
+
+        return $this->asJson(['sent'=>false]);
+    }
+
+    function actionOtp($nomor_hp,$otp){
+        $otp = Otp::find()->where(['nomor_hp'=>$nomor_hp,'code'=>$otp,'is_verified'=>0])->one();
+        if($otp){
+            $tz = 'Asia/Jakarta';
+            $dt = new DateTime("now", new DateTimeZone($tz));
+            $timestamp = $dt->format('Y-m-d H:i:s');
+
+            if($otp->expired_date > $timestamp){
+                $otp->is_verified = 1;
+                if($otp->save()){
+                    $Pelapor = Pelapor::find()->where(['nomor_hp'=>$otp->nomor_hp])->one();   
+                    
+                    if($Pelapor){
+                        return $this->asJson(['found'=>true,'expired'=>false,'data'=>$Pelapor]);
+                    }
+
+                    return $this->asJson(['found'=>true,'expired'=>false,'data'=>[]]);
+                }
+            }else{
+                return $this->asJson(['found'=>false,'expired'=>true]);   
+            }
+        }
+
+        return $this->asJson(['found'=>false,'expired'=>false]);
     }
 
     function actionBuat(){

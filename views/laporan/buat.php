@@ -18,14 +18,60 @@ if($success = Yii::$app->session->getFlash("success")):
 
 <?php endif; ?>
 
+
+
 <div id="phone">
-    <div class="card card-style">
+    <div id="success" class="d-none">
+        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-green1-dark" role="alert">
+            <span><i class="fa fa-check"></i></span>
+            <strong>Kode OTP berhasil dikirim!</strong>
+            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>    
+    </div>
+
+    <div id="failed" class="d-none">
+        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-red1-dark" role="alert">
+            <span><i class="fa fa-times"></i></span>
+            <strong>Kode OTP gagal dikirim!</strong>
+            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>    
+    </div>
+
+    <div id="expired" class="d-none">
+        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-red1-dark" role="alert">
+            <span><i class="fa fa-times"></i></span>
+            <strong>Masa berlaku OTP anda sudah habis!</strong>
+            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>    
+    </div>
+
+    <div id="verified" class="d-none">
+        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-green1-dark" role="alert">
+            <span><i class="fa fa-check"></i></span>
+            <strong>Berhasil Terverifikasi!</strong>
+            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>    
+    </div>
+
+    <div id="notfound" class="d-none">
+        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-red1-dark" role="alert">
+            <span><i class="fa fa-times"></i></span>
+            <strong>OTP yang anda masukkan salah!</strong>
+            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>    
+    </div>
+
+    <div class="card card-style" id="inputs">
         <div class="content">
-            <div class="form-group">
+            <div class="form-group" id="nomor_hp" >
                 <label for="">Nomor HP</label>
                 <input type="text" class="form-control" placeholder="Masukkan nomor hp">
             </div>
-            <button class="btn shadow-xl btn-m bg-highlight font-900">Kirim OTP</button>
+            <div class="form-group d-none" id="otp">
+                <label for="">Kode OTP</label>
+                <input type="text" class="form-control" placeholder="Masukkan kode OTP" maxlength="4">
+            </div>
+            <button id="btn-otp" class="btn shadow-xl btn-m bg-highlight font-900">Kirim OTP</button>
         </div>
     </div>
 </div>
@@ -130,42 +176,91 @@ if($success = Yii::$app->session->getFlash("success")):
     }
 
     var parentPhone = document.querySelector("#phone")
-    var otp = parentPhone.querySelector("button")
+    var otp = parentPhone.querySelector("#btn-otp")
 
     otp.addEventListener("click",async function(){
-        var phone = document.querySelector("#phone input")
-        const json = await fetch(`<?=Url::to("/web/laporan/otp")?>?nomor_hp=${phone.value}`)
-        const  res= await json.json()
+        var fgPhone = document.querySelector("#phone #nomor_hp")
+        var phone = fgPhone.querySelector("input")
+        var fgOtp = document.querySelector("#phone #otp")
+        var otpInput = fgOtp.querySelector("input")
 
-        if(res){
-            var laporan = document.querySelector("#laporan")
+        if(otpInput.value == ""){
+            otp.innerHTML = "Mengirim..."
 
-            if(res.found){
-                var pelapor = document.querySelector("#pelapor")
-                Object.keys(res.data).forEach(key=>{
-                    if(key!="id"){
-                        var input = pelapor.querySelector(`#pelapor-${key}`)
-                        input.value = res.data[key]
-                    }
-                })
+            const json = await fetch(`<?=Url::to("/web/laporan/sendotp")?>?nomor_hp=${phone.value}&action=buat`)
+            const res = await json.json()
+
+            if(res.sent){
+                parentPhone.querySelector("#success").classList.remove("d-none")
+                fgOtp.classList.remove("d-none")
+                otp.innerHTML = "Verifikasi"
+            }else{
+                parentPhone.querySelector("#failed").classList.remove("d-none")
+                otp.innerHTML = "Kirim Ulang"
             }
+        }else{
+            otp.innerHTML = "Memverifikasi..."
 
-            parentPhone.classList.add("d-none")
-            laporan.classList.remove("d-none")
+            const json = await fetch(`<?=Url::to("/web/laporan/otp")?>?nomor_hp=${phone.value}&otp=${otpInput.value}`)
+            const res = await json.json()
+
+            if(res){
+                var laporan = document.querySelector("#laporan")
+
+                if(res.found){
+                    var pelapor = document.querySelector("#pelapor")
+
+                    if(res.data){
+                        Object.keys(res.data).forEach(key=>{
+                            if(key!="id"){
+                                var input = pelapor.querySelector(`#pelapor-${key}`)
+                                input.value = res.data[key] 
+
+                                if(key == "is_korban"){
+                                    isKorban(res.data[key])
+                                }
+                            }
+                        })
+                    }
+
+                    otp.innerHTML = "Terverifikasi"
+
+                    parentPhone.querySelector("#verified").classList.remove("d-none")
+                    parentPhone.querySelector("#inputs").classList.add("d-none")
+                    laporan.classList.remove("d-none")
+                }
+
+                if(res.expired){
+                    parentPhone.querySelector("#expired").classList.remove("d-none")
+                    otp.innerHTML = "Verifikasi Ulang (masukkan otp) / Kirim Ulang"
+                    otpInput.value = ""
+
+                }
+
+                if(res.found === false && res.expired === false){
+                    parentPhone.querySelector("#notfound").classList.remove("d-none")
+                    otp.innerHTML = "Verifikasi Ulang"
+                }
+            }
         }
+
+        
     })
     
     function setKorban(key,value){
-        var input = document.getElementsByName(`Korban[${key}]`)[0]
+        var input = document.querySelector(`#korban-${key}`)
         input.value = value
-
     }
 
     function isKorban(value){
         if(value == "Ya"){
             Object.keys(data).forEach(key=>{
-                var input = document.getElementsByName(`Pelapor[${key}]`)
+                var input = document.querySelector(`#pelapor-${key}`)
                 setKorban(key,input[0].value)
+            })
+        }else{
+            Object.keys(data).forEach(key=>{
+                setKorban(key,"")
             })
         }
     }
