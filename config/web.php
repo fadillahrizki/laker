@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'dashboard/index',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -50,7 +51,7 @@ $config = [
             ],
         ],
     ],
-    'params' => $params,
+    'params' => $params
 ];
 
 if (YII_ENV_DEV) {
