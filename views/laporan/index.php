@@ -7,34 +7,42 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\LaporanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Laporans';
+$this->title = 'Semua Laporan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="laporan-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="card card-style">
+    <div class="content">
+        <p>
+            <?= Html::a('Tambah Laporan', ['create'], ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
+        </p>
 
-    <p>
-        <?= Html::a('Create Laporan', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'id',
+                [
+                    'attribute'=>'pelapor',
+                    "value"=>"pelapor.nama"
+                ],
+                [
+                    'attribute'=>'jenisKasus',
+                    "value"=>"jenisKasus.nama"
+                ],
+                'kronologi:ntext',
+                'status',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'pelapor_id',
-            'jenis_kasus_id',
-            'kronologi:ntext',
-            'status',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    
+    </div>
+</div>
 
 
 </div>

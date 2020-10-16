@@ -11,6 +11,8 @@ use app\models\Laporan;
  */
 class LaporanSearch extends Laporan
 {
+
+    public $pelapor,$jenisKasus;
     /**
      * {@inheritdoc}
      */
@@ -18,7 +20,7 @@ class LaporanSearch extends Laporan
     {
         return [
             [['id', 'pelapor_id', 'jenis_kasus_id'], 'integer'],
-            [['kronologi', 'status'], 'safe'],
+            [['kronologi', 'status','pelapor','jenisKasus'], 'safe'],
         ];
     }
 
@@ -44,6 +46,9 @@ class LaporanSearch extends Laporan
 
         // add conditions that should always apply here
 
+
+        $query->joinWith(["pelapor","jenisKasus"]);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -64,7 +69,9 @@ class LaporanSearch extends Laporan
         ]);
 
         $query->andFilterWhere(['like', 'kronologi', $this->kronologi])
-            ->andFilterWhere(['like', 'status', $this->status]);
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like','pelapor.nama',$this->pelapor])
+            ->andFilterWhere(['like','jenisKasus.nama',$this->jenisKasus]);
 
         return $dataProvider;
     }

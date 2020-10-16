@@ -12,31 +12,37 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pelapor-index">
 
-    <p>
-        <?= Html::a('Tambah Pelapor', ['create'], ['class' => 'btn shadow-xl bg-highlight']) ?>
-    </p>
+    <div class="card card-style">
+        <div class="content">
+            <p>
+                <?= Html::a('Tambah Pelapor', ['create'], ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
+            </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'is_rahasia',
-            'nama',
-            'alamat:ntext',
-            'usia',
-            //'jenis_kelamin',
-            //'nomor_hp',
-            //'is_korban',
-            //'hubungan_dengan_korban',
+                    'id',
+                    'is_rahasia',
+                    'nama',
+                    'alamat:ntext',
+                    'usia',
+                    //'jenis_kelamin',
+                    //'nomor_hp',
+                    //'is_korban',
+                    //'hubungan_dengan_korban',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        
+        </div>
+    </div>
+
 
 
 </div>

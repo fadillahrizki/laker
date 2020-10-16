@@ -10,27 +10,33 @@ use yii\widgets\ActiveForm;
 
 <div class="pengaturan-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+<div class="card card-style">
+    <div class="content">
 
-    <?= $form->field($model, 'sms_user')->textInput(['maxlength' => true]) ?>
+        <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'sms_password')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'sms_user')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sms_no_admin')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'sms_password')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'konten_admin')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'sms_no_admin')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'konten_user_masuk')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'konten_admin')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'konten_user_tindak_lanjut')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'konten_user_masuk')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'konten_selesai')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'konten_user_tindak_lanjut')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'konten_kembali')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'konten_selesai')->textarea(['rows' => 6]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= $form->field($model, 'konten_kembali')->textarea(['rows' => 6]) ?>
+
+        <div class="form-group">
+            <?= Html::submitButton('Simpan', ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
+        </div>
+    
     </div>
+</div>
 
     <?php ActiveForm::end(); ?>
 

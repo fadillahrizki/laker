@@ -7,31 +7,35 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\JenisKasusSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Jenis Kasuses';
+$this->title = 'Semua Jenis Kasus';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jenis-kasus-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="card card-style">
+        <div class="content">
 
-    <p>
-        <?= Html::a('Create Jenis Kasus', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            <p>
+                <?= Html::a('Tambah Jenis Kasus', ['create'], ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
+            </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'nama',
+                    'id',
+                    'nama',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        
+        </div>
+    </div>
 
 
 </div>

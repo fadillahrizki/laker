@@ -10,16 +10,22 @@ use yii\widgets\ActiveForm;
 
 <div class="arsip-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+<div class="card card-style">
+    <div class="content">
 
-    <?= $form->field($model, 'laporan_id')->textInput() ?>
+        <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'alasan')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'laporan_id')->textInput() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= $form->field($model, 'alasan')->textarea(['rows' => 6]) ?>
+
+        <div class="form-group">
+            <?= Html::submitButton('Simpan', ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+    
     </div>
-
-    <?php ActiveForm::end(); ?>
+</div>
 
 </div>

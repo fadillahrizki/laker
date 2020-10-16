@@ -10,20 +10,26 @@ use yii\widgets\ActiveForm;
 
 <div class="laporan-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <div class="card card-style">
+        <div class="content">
 
-    <?= $form->field($model, 'pelapor_id')->textInput() ?>
+            <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'jenis_kasus_id')->textInput() ?>
+            <?= $form->field($model, 'pelapor_id')->textInput() ?>
 
-    <?= $form->field($model, 'kronologi')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'jenis_kasus_id')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'kronologi')->textarea(['rows' => 6]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+
+            <div class="form-group">
+                <?= Html::submitButton('Simpan', ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+    
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
 
 </div>

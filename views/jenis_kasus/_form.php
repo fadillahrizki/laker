@@ -10,14 +10,20 @@ use yii\widgets\ActiveForm;
 
 <div class="jenis-kasus-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+<div class="card card-style">
+    <div class="content">
 
-    <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
+        <?php $form = ActiveForm::begin(); ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
+
+        <div class="form-group">
+            <?= Html::submitButton('Simpan', ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+    
     </div>
-
-    <?php ActiveForm::end(); ?>
+</div>
 
 </div>
