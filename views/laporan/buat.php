@@ -134,7 +134,7 @@ if($success = Yii::$app->session->getFlash("success")):
 
     otp.addEventListener("click",async function(){
         var phone = document.querySelector("#phone input")
-        const json = await fetch(`<?=Url::to("/laporan/otp")?>?nomor_hp=${phone.value}`)
+        const json = await fetch(`<?=Url::to("/web/laporan/otp")?>?nomor_hp=${phone.value}`)
         const  res= await json.json()
 
         if(res){
