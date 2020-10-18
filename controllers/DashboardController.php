@@ -31,6 +31,6 @@ class DashboardController extends Controller
      */
     public function actionIndex()
     {
-        return "Hello World";
+        return $this->renderPartial('index');
     }
 }

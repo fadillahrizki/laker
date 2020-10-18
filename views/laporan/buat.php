@@ -67,7 +67,7 @@ if($success = Yii::$app->session->getFlash("success")):
             </div>
             <div class="form-group d-none" id="otp">
                 <label for="">Kode OTP</label>
-                <input type="text" class="form-control" placeholder="Masukkan kode OTP" maxlength="4">
+                <input type="tel" class="form-control" placeholder="Masukkan kode OTP" maxlength="4">
             </div>
             <button id="btn-otp" class="btn shadow-xl btn-m bg-highlight font-900">Kirim OTP</button>
         </div>
@@ -176,6 +176,52 @@ if($success = Yii::$app->session->getFlash("success")):
     var parentPhone = document.querySelector("#phone")
     var otp = parentPhone.querySelector("#btn-otp")
 
+    function otpD(text){
+        otp.setAttribute("disabled","true")
+
+        let time = 120
+        let minutes = 0;
+        let sec = 0;
+        
+        function setMit(seconds){
+            if(seconds >= 60){
+                minutes+=1;
+
+                if(seconds-60 >= 60){
+                    setMit(seconds-60)
+                }else{
+                    sec = seconds-60
+                }
+            }else{
+                sec = seconds
+            }
+        }
+
+        setMit(time)
+
+        var tm = setInterval(()=>{
+
+            if(sec < 0 && minutes > 0){
+                minutes -= 1
+                sec = 59
+            }
+
+            if(time == 0){
+                clearInterval(tm)
+
+                otp.removeAttribute("disabled")
+                otp.innerHTML = text
+            }else{
+                otp.innerHTML = text+" ("+minutes+":"+sec+")"
+            }
+
+
+            sec--;
+            time--;
+
+        },1000)
+    }
+
     otp.addEventListener("click",async function(){
         var fgPhone = document.querySelector("#phone #nomor_hp")
         var phone = fgPhone.querySelector("input")
@@ -195,11 +241,11 @@ if($success = Yii::$app->session->getFlash("success")):
                     otp.innerHTML = "Verifikasi"
                 }else{
                     parentPhone.querySelector("#failed").classList.remove("d-none")
-                    otp.innerHTML = "Kirim Ulang"
+                    otpD("Kirim Ulang")
                 }
             }catch{
                 parentPhone.querySelector("#failed").classList.remove("d-none")
-                otp.innerHTML = "Kirim Ulang"
+                otpD("Kirim Ulang")
             }
 
         }else{
@@ -213,12 +259,15 @@ if($success = Yii::$app->session->getFlash("success")):
                     var laporan = document.querySelector("#laporan")
 
                     if(res.found){
-                        var pelapor = document.querySelector("#pelapor")
+                        var pInp = document.querySelector(`#pelapor-nomor_hp`)
+                        pInp.value = phone.value
+
+                        pInp.setAttribute("disabled",true)
 
                         if(res.data){
                             Object.keys(res.data).forEach(key=>{
                                 if(key!="id"){
-                                    var input = pelapor.querySelector(`#pelapor-${key}`)
+                                    var input = document.querySelector(`#pelapor-${key}`)
                                     input.value = res.data[key] 
 
                                     if(key == "is_korban"){
@@ -237,19 +286,18 @@ if($success = Yii::$app->session->getFlash("success")):
 
                     if(res.expired){
                         parentPhone.querySelector("#expired").classList.remove("d-none")
-                        otp.innerHTML = "Verifikasi Ulang (masukkan otp) / Kirim Ulang"
                         otpInput.value = ""
-
+                        otpD("Verifikasi Ulang (masukkan otp) / Kirim Ulang")
                     }
 
                     if(res.found === false && res.expired === false){
                         parentPhone.querySelector("#notfound").classList.remove("d-none")
-                        otp.innerHTML = "Verifikasi Ulang"
+                        otpD("Verifikasi Ulang")
                     }
                 }
             }catch{
                 parentPhone.querySelector("#notfound").classList.remove("d-none")
-                otp.innerHTML = "Verifikasi Ulang"
+                otpD("Verifikasi Ulang")
             }
 
         }
@@ -257,21 +305,35 @@ if($success = Yii::$app->session->getFlash("success")):
         
     })
     
-    function setKorban(key,value){
+    function setKorban(key,value,korban = false){
         var input = document.querySelector(`#korban-${key}`)
         input.value = value
+        
+        if(korban){
+            input.setAttribute("disabled",true)
+        }else{
+            input.removeAttribute("disabled")
+        }
     }
 
-    function isKorban(value){
+    async function isKorban(value){
         if(value == "Ya"){
-            Object.keys(data).forEach(key=>{
+            await Object.keys(data).forEach(key=>{
                 var input = document.querySelector(`#pelapor-${key}`)
-                setKorban(key,input[0].value)
+                setKorban(key,input.value,true)
             })
+
+            var hdk = document.querySelector(`#pelapor-hubungan_dengan_korban`)
+            hdk.value = "Korban"
+            hdk.setAttribute("disabled",true)
         }else{
-            Object.keys(data).forEach(key=>{
+            await Object.keys(data).forEach(key=>{
                 setKorban(key,"")
             })
+
+            var hdk = document.querySelector(`#pelapor-hubungan_dengan_korban`)
+            hdk.value = ""
+            hdk.removeAttribute("disabled")
         }
     }
 </script>
