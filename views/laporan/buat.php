@@ -18,8 +18,6 @@ if($success = Yii::$app->session->getFlash("success")):
 
 <?php endif; ?>
 
-
-
 <div id="phone">
     <div id="success" class="d-none">
         <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-green1-dark" role="alert">
@@ -187,61 +185,73 @@ if($success = Yii::$app->session->getFlash("success")):
         if(otpInput.value == ""){
             otp.innerHTML = "Mengirim..."
 
-            const json = await fetch(`<?=Url::to(["laporan/sendotp"])?>?nomor_hp=${phone.value}&action=buat`)
-            const res = await json.json()
+            try{
+                const json = await fetch(`<?=Url::to(["laporan/sendotp"])?>?nomor_hp=${phone.value}&action=buat`)
+                const res = await json.json()
 
-            if(res.sent){
-                parentPhone.querySelector("#success").classList.remove("d-none")
-                fgOtp.classList.remove("d-none")
-                otp.innerHTML = "Verifikasi"
-            }else{
+                if(res.sent){
+                    parentPhone.querySelector("#success").classList.remove("d-none")
+                    fgOtp.classList.remove("d-none")
+                    otp.innerHTML = "Verifikasi"
+                }else{
+                    parentPhone.querySelector("#failed").classList.remove("d-none")
+                    otp.innerHTML = "Kirim Ulang"
+                }
+            }catch{
                 parentPhone.querySelector("#failed").classList.remove("d-none")
                 otp.innerHTML = "Kirim Ulang"
             }
+
         }else{
             otp.innerHTML = "Memverifikasi..."
 
-            const json = await fetch(`<?=Url::to(["laporan/otp"])?>?nomor_hp=${phone.value}&otp=${otpInput.value}`)
-            const res = await json.json()
+            try{
+                const json = await fetch(`<?=Url::to(["laporan/otp"])?>?nomor_hp=${phone.value}&otp=${otpInput.value}`)
+                const res = await json.json()
 
-            if(res){
-                var laporan = document.querySelector("#laporan")
+                if(res){
+                    var laporan = document.querySelector("#laporan")
 
-                if(res.found){
-                    var pelapor = document.querySelector("#pelapor")
+                    if(res.found){
+                        var pelapor = document.querySelector("#pelapor")
 
-                    if(res.data){
-                        Object.keys(res.data).forEach(key=>{
-                            if(key!="id"){
-                                var input = pelapor.querySelector(`#pelapor-${key}`)
-                                input.value = res.data[key] 
+                        if(res.data){
+                            Object.keys(res.data).forEach(key=>{
+                                if(key!="id"){
+                                    var input = pelapor.querySelector(`#pelapor-${key}`)
+                                    input.value = res.data[key] 
 
-                                if(key == "is_korban"){
-                                    isKorban(res.data[key])
+                                    if(key == "is_korban"){
+                                        isKorban(res.data[key])
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        }
+
+                        otp.innerHTML = "Terverifikasi"
+
+                        parentPhone.querySelector("#verified").classList.remove("d-none")
+                        parentPhone.querySelector("#inputs").classList.add("d-none")
+                        laporan.classList.remove("d-none")
                     }
 
-                    otp.innerHTML = "Terverifikasi"
+                    if(res.expired){
+                        parentPhone.querySelector("#expired").classList.remove("d-none")
+                        otp.innerHTML = "Verifikasi Ulang (masukkan otp) / Kirim Ulang"
+                        otpInput.value = ""
 
-                    parentPhone.querySelector("#verified").classList.remove("d-none")
-                    parentPhone.querySelector("#inputs").classList.add("d-none")
-                    laporan.classList.remove("d-none")
+                    }
+
+                    if(res.found === false && res.expired === false){
+                        parentPhone.querySelector("#notfound").classList.remove("d-none")
+                        otp.innerHTML = "Verifikasi Ulang"
+                    }
                 }
-
-                if(res.expired){
-                    parentPhone.querySelector("#expired").classList.remove("d-none")
-                    otp.innerHTML = "Verifikasi Ulang (masukkan otp) / Kirim Ulang"
-                    otpInput.value = ""
-
-                }
-
-                if(res.found === false && res.expired === false){
-                    parentPhone.querySelector("#notfound").classList.remove("d-none")
-                    otp.innerHTML = "Verifikasi Ulang"
-                }
+            }catch{
+                parentPhone.querySelector("#notfound").classList.remove("d-none")
+                otp.innerHTML = "Verifikasi Ulang"
             }
+
         }
 
         
