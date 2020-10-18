@@ -10,13 +10,12 @@ use yii\grid\GridView;
 $this->title = 'Semua Laporan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
 <div class="laporan-index">
 
 <div class="card card-style">
     <div class="content">
-        <p>
-            <?= Html::a('Tambah Laporan', ['create'], ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
-        </p>
 
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -25,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-                'id',
+                // 'id',
                 [
                     'attribute'=>'pelapor',
                     "value"=>"pelapor.nama"

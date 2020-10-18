@@ -89,7 +89,7 @@ if($success = Yii::$app->session->getFlash("success")):
 
         <?= $form->field($Pelapor,"nama")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nama"]) ?>
         <?= $form->field($Pelapor,"alamat")->textarea(['class'=>'form-control','placeholder'=>"Masukkan alamat"]) ?>
-        <?= $form->field($Pelapor,"usia")->textInput(['class'=>'form-control','placeholder'=>"Masukkan usia"]) ?>
+        <?= $form->field($Pelapor,"usia")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan usia"]) ?>
 
         <?= $form->field($Pelapor,"jenis_kelamin")->dropDownList([
             "Laki-laki"=>"Laki-laki",
@@ -113,7 +113,7 @@ if($success = Yii::$app->session->getFlash("success")):
 
         <?= $form->field($Korban,"nama")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nama"]) ?>
         <?= $form->field($Korban,"alamat")->textarea(['class'=>'form-control','placeholder'=>"Masukkan alamat"]) ?>
-        <?= $form->field($Korban,"usia")->textInput(['class'=>'form-control','placeholder'=>"Masukkan usia"]) ?>
+        <?= $form->field($Korban,"usia")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan usia"]) ?>
 
         <?= $form->field($Korban,"jenis_kelamin")->dropDownList([
             "Laki-laki"=>"Laki-laki",
@@ -130,7 +130,7 @@ if($success = Yii::$app->session->getFlash("success")):
 
         <?= $form->field($Terlapor,"nama")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nama"]) ?>
         <?= $form->field($Terlapor,"alamat")->textarea(['class'=>'form-control','placeholder'=>"Masukkan alamat"]) ?>
-        <?= $form->field($Terlapor,"usia")->textInput(['class'=>'form-control','placeholder'=>"Masukkan usia"]) ?>
+        <?= $form->field($Terlapor,"usia")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan usia"]) ?>
 
         <?= $form->field($Terlapor,"jenis_kelamin")->dropDownList([
             "Laki-laki"=>"Laki-laki",

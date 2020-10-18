@@ -29,21 +29,32 @@ AppAsset::register($this);
  
 <div id="page">
  
-    <?=$this->render('admin_header.php')?>
+    <?=$this->render('header.php')?>
  
     <div class="page-content">
 
         <div class="page-title page-title-small">
             <h2>
-                <a href='#' data-back-button><i class='fa fa-arrow-left'></i></a>
-                <?=$this->title?>
+                <?=isset($this->title) ? $this->title != "Home" ? "<a href='#' data-back-button><i class='fa fa-arrow-left'></i></a>" : "" : ""?>
+                <?=isset($this->title) ? $this->title : "Home"?>
             </h2>
-            <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="<?=Url::to(['images/avatars/5s.png'])?>"></a>
+            <!-- <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="/images/avatars/5s.png"></a> -->
         </div>
 
-        <?= $content; ?>
+        <div class="card card-style">
+            <div class="content text-capitalize font-700">
+                Laporan kekerasan perempuan dan anak kabupaten Labuhanbatu Utara
+            </div>
+        </div>
+
+        <?=$content?>
         
     </div>
+    <!-- end of page content -->
+
+    <?=$this->render('footer.php')?>
+ 
+    <!-- Off Canvas Elements Here -->
  
 </div>    
 

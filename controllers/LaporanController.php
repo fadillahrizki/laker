@@ -100,6 +100,7 @@ class LaporanController extends Controller
     }
 
     function actionOtp($nomor_hp,$otp){
+        
         $otp = Otp::find()->where(['nomor_hp'=>$nomor_hp,'code'=>$otp,'is_verified'=>0])->one();
         if($otp){
             $tz = 'Asia/Jakarta';
@@ -126,6 +127,7 @@ class LaporanController extends Controller
     }
 
     function actionBuat(){
+        $this->layout = "frontend";
         $request = Yii::$app->request;
 
         $Pelapor = new Pelapor();
@@ -161,8 +163,9 @@ class LaporanController extends Controller
                 $Terlapor->save();
                 
                 $transaction->commit();
-                
+            
                 Yii::$app->session->addFlash("success", "Pembuatan laporan sukses");
+                
             }catch(\Exception $e){
                 $transaction->rollback();
             }
@@ -178,6 +181,8 @@ class LaporanController extends Controller
     }
 
     function actionCek(){
+
+        $this->layout = "frontend";
         $request = Yii::$app->request;
         $Pelapor = new Pelapor();
 
@@ -209,6 +214,7 @@ class LaporanController extends Controller
      */
     public function actionIndex()
     {
+
         $searchModel = new LaporanSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
