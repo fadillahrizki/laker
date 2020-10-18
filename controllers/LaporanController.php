@@ -47,6 +47,10 @@ class LaporanController extends Controller
                     'Access-Control-Request-Method' => ['*'],
                     // Allow only headers 'X-Wsse'
                     'Access-Control-Request-Headers' => ['*'],
+                    // Allow credentials (cookies, authorization headers, etc.) to be exposed to the browser
+                    'Access-Control-Allow-Credentials' => true,
+                    // Allow OPTIONS caching
+                    'Access-Control-Max-Age' => 3600,
                 ],
             ]
         ];
