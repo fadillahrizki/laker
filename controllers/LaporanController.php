@@ -38,6 +38,17 @@ class LaporanController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::className(),
+                'cors' => [
+                    // restrict access to
+                    'Origin' => ['http://laker.labura.go.id/'],
+                    // Allow only POST and PUT methods
+                    'Access-Control-Request-Method' => ['*'],
+                    // Allow only headers 'X-Wsse'
+                    'Access-Control-Request-Headers' => ['*'],
+                ],
+            ]
         ];
     }
 
