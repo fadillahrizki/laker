@@ -38,19 +38,6 @@ class LaporanController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-            'corsFilter' => [
-                'class' => \yii\filters\Cors::className(),
-                'cors' => [
-                    // restrict access to
-                    'Origin' => ['http://laker.labura.go.id'],
-                    // Allow only POST and PUT methods
-                    'Access-Control-Request-Method' => ['*'],
-                    // Allow credentials (cookies, authorization headers, etc.) to be exposed to the browser
-                    'Access-Control-Allow-Credentials' => true,
-                    // Allow OPTIONS caching
-                    'Access-Control-Max-Age' => 3600,
-                ],
-            ]
         ];
     }
 
