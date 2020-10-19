@@ -28,18 +28,9 @@ AppAsset::register($this);
 <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
  
 <div id="page">
- 
-    <?=$this->render('admin_header.php')?>
- 
-    <div class="page-content">
-
-        <div class="page-title page-title-small">
-            <h2>
-                <a href='#' data-back-button><i class='fa fa-arrow-left'></i></a>
-                <?=$this->title?>
-            </h2>
-            <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="<?=Url::to(['images/avatars/5s.png'])?>"></a>
-        </div>
+    
+    <?=$this->render('admin_header')?>
+    <div class="page-content" style="margin-top:50px">
 
         <?= $content; ?>
         
