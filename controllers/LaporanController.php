@@ -43,6 +43,7 @@ class LaporanController extends Controller
 
     public function actionDetail($id)
     {
+        $this->layout = "frontend";
         return $this->render('detail', [
             'model' => $this->findModel($id),
         ]);
@@ -99,9 +100,9 @@ class LaporanController extends Controller
         return $this->asJson(['sent'=>false]);
     }
 
-    function actionOtp($nomor_hp,$otp){
+    function actionOtp($nomor_hp,$otp,$action){
         
-        $otp = Otp::find()->where(['nomor_hp'=>$nomor_hp,'code'=>$otp,'is_verified'=>0])->one();
+        $otp = Otp::find()->where(['nomor_hp'=>$nomor_hp,'code'=>$otp,'is_verified'=>0,'action'=>strtolower($action)])->one();
         if($otp){
             $tz = 'Asia/Jakarta';
             $dt = new DateTime("now", new DateTimeZone($tz));
@@ -113,7 +114,13 @@ class LaporanController extends Controller
                     $Pelapor = Pelapor::find()->where(['nomor_hp'=>$otp->nomor_hp])->one();   
                     
                     if($Pelapor){
-                        return $this->asJson(['found'=>true,'expired'=>false,'data'=>$Pelapor]);
+                        if(strtolower($action) == "cek"){
+                            $Laporans = $Pelapor->laporans;
+
+                            return $this->asJson(['found'=>true,'expired'=>false,'data'=>$Pelapor,'laporans'=>$Laporans]);
+                        }else{
+                            return $this->asJson(['found'=>true,'expired'=>false,'data'=>$Pelapor]);
+                        }
                     }
 
                     return $this->asJson(['found'=>true,'expired'=>false,'data'=>[]]);
