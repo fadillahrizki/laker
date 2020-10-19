@@ -135,7 +135,7 @@ class LaporanController extends Controller
         $Korban = new Korban();
         $Terlapor = new Terlapor();
         $JenisKasus = JenisKasus::find()->all();
-        
+
         if(
             $Pelapor->load($request->post()) &&
             $Laporan->load($request->post()) &&
@@ -166,6 +166,7 @@ class LaporanController extends Controller
             
                 Yii::$app->session->addFlash("success", "Pembuatan laporan sukses");
                 
+                return $this->redirect("");
             }catch(\Exception $e){
                 $transaction->rollback();
             }

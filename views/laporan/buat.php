@@ -177,7 +177,7 @@ if($success = Yii::$app->session->getFlash("success")):
     var otp = parentPhone.querySelector("#btn-otp")
 
     function otpD(text){
-        otp.setAttribute("disabled","true")
+        otp.setAttribute("readonly","true")
 
         let time = 120
         let minutes = 0;
@@ -209,7 +209,7 @@ if($success = Yii::$app->session->getFlash("success")):
             if(time == 0){
                 clearInterval(tm)
 
-                otp.removeAttribute("disabled")
+                otp.removeAttribute("readonly")
                 otp.innerHTML = text
             }else{
                 otp.innerHTML = text+" ("+minutes+":"+sec+")"
@@ -262,7 +262,7 @@ if($success = Yii::$app->session->getFlash("success")):
                         var pInp = document.querySelector(`#pelapor-nomor_hp`)
                         pInp.value = phone.value
 
-                        pInp.setAttribute("disabled",true)
+                        pInp.setAttribute("readonly",true)
 
                         if(res.data){
                             Object.keys(res.data).forEach(key=>{
@@ -310,9 +310,9 @@ if($success = Yii::$app->session->getFlash("success")):
         input.value = value
         
         if(korban){
-            input.setAttribute("disabled",true)
+            input.setAttribute("readonly",true)
         }else{
-            input.removeAttribute("disabled")
+            input.removeAttribute("readonly")
         }
     }
 
@@ -325,7 +325,7 @@ if($success = Yii::$app->session->getFlash("success")):
 
             var hdk = document.querySelector(`#pelapor-hubungan_dengan_korban`)
             hdk.value = "Korban"
-            hdk.setAttribute("disabled",true)
+            hdk.setAttribute("readonly",true)
         }else{
             await Object.keys(data).forEach(key=>{
                 setKorban(key,"")
@@ -333,7 +333,7 @@ if($success = Yii::$app->session->getFlash("success")):
 
             var hdk = document.querySelector(`#pelapor-hubungan_dengan_korban`)
             hdk.value = ""
-            hdk.removeAttribute("disabled")
+            hdk.removeAttribute("readonly")
         }
     }
 </script>
