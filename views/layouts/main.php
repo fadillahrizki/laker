@@ -30,7 +30,14 @@ AppAsset::register($this);
 <div id="page">
     
     <?=$this->render('admin_header')?>
-    <div class="page-content" style="margin-top:50px">
+    <div class="page-content">
+        <?php if($this->title != "Login") : ?>
+        <div class="card card-style text-center">
+            <div class="content">
+                <h2><?=$this->title?></h2>
+            </div>
+        </div>
+        <?php endif ?>
 
         <?= $content; ?>
         

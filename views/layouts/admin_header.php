@@ -3,7 +3,7 @@
 
 use yii\helpers\Url;
 ?>
-    <nav class="navbar navbar-default bg-white shadow">
+    <nav class="navbar navbar-default bg-white shadow-sm">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">

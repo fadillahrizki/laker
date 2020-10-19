@@ -3,6 +3,12 @@
 $this->title = "Login"
 ?>
 
+<div class="card card-style text-center mx-auto" style="width:350px">
+    <div class="content">
+        <h2><?=$this->title?></h2>
+    </div>
+</div>
+
 <div class="card card-style m-auto" style="width:350px">
     <div class="content mt-2 mb-0">
         <div class="input-style has-icon input-style-1 input-required pb-1">
