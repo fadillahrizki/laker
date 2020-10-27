@@ -1,47 +1,63 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
+use yii\widgets\ActiveForm;
+
+$this->title = "Login";
+
+$form = ActiveForm::begin();
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use app\assets\AppAsset;
+use yii\helpers\Url;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+AppAsset::register($this);
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>">
+<head>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php $this->registerCsrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <link rel="manifest" href="/_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+    <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/icon-192x192.png">
+    <?php $this->head() ?>
+</head>
+<body class="theme-light" data-background="none" data-highlight="blue2">
+<?php $this->beginBody() ?>
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+ 
+<div id="page">
 
-    <p>Please fill out the following fields to login:</p>
+    <div class="card card-style text-center mx-auto mt-5" style="width:350px">
+        <div class="content">
+            <h2><?=$this->title?></h2>
+        </div>
+    </div>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+    <div class="card card-style m-auto" style="width:350px">
+        <div class="content mt-2 mb-0">
+            <?= $form->field($model,'username')->textInput() ?>
+            <?= $form->field($model,'password')->passwordInput() ?>
+            <?= $form->field($model,'rememberMe')->checkbox() ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <button class="btn btn-m mt-2 mb-4 btn-full btn-block bg-green1-dark rounded-sm text-uppercase font-900">Login</button>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+            <div class="divider mt-4 mb-3"></div>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+            <div class="d-flex">
+                <div class="w-50 font-11 pb-2 color-theme opacity-60 pb-3 text-left"><a href="#" class="color-theme">Create Account</a></div>
+                <div class="w-50 font-11 pb-2 color-theme opacity-60 pb-3 text-right"><a href="#" class="color-theme">Forgot Credentials</a></div>
             </div>
         </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+        
     </div>
-</div>
+ 
+</div>    
+<?php ActiveForm::end() ?>
+<?php $this->endBody() ?>
+</body>
+</html>
+<?php $this->endPage() ?>

@@ -7,11 +7,12 @@ use yii\helpers\Html;
 use app\assets\AppAsset;
 use yii\helpers\Url;
 
-AppAsset::register($this);
-
 if (Yii::$app->user->isGuest) {
-    Yii::$app->response->redirect(Url::to(['dashboard/login'], true));
+    Yii::$app->response->redirect(Url::to(['site/login'], true));
 }
+
+
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

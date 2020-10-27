@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -31,9 +32,7 @@ class SiteController extends Controller
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
+                'actions' => [],
             ],
         ];
     }
@@ -65,11 +64,33 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionChangePassword()
+    {
+        $model = new User();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $user = User::find()->where(['id'=>Yii::$app->user->id])->one();
+
+            $user->password_hash = $model->password_hash;
+
+            if($user->save()){
+                Yii::$app->session->addFlash('success','Ganti password berhasil!');
+                return $this->redirect(['change-password']);
+            }
+
+
+        }
+        
+        return $this->render('change_password',['model'=>$model]);
+    }
+
     /**
      * Login action.
      *
      * @return Response|string
      */
+    
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -82,21 +103,13 @@ class SiteController extends Controller
         }
 
         $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        return $this->renderPartial('login',['model'=>$model]);
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
+    public function actionLogout(){
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(['login']);
     }
 
     /**

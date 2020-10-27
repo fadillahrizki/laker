@@ -56,7 +56,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'username' => 'Username',
             'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
+            'password_hash' => 'Password baru',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
             'status' => 'Status',
@@ -100,11 +100,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function setPassword($password)
     {
         return Yii::$app->security->generatePasswordHash($password);
-    }
-
-    public function getParticipant()
-    {
-        return $this->hasOne(Participant::className(), ['user_id' => 'id']);
     }
 
     public function beforeSave($insert)
@@ -201,6 +196,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function validatePassword($password)
     {
         return Yii::$app->getSecurity()->validatePassword($password, $this->password_hash);
+    }
+
+    function decryptPassword(){
+        return Yii::$app->getSecurity()->decryptByPassword($this->password_hash, "WHATEVER_SECRET_YOU_CHOOSE");
     }
 
     /**

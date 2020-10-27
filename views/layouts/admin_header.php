@@ -2,6 +2,7 @@
         <?php
 
 use yii\helpers\Url;
+
 ?>
     <div class="header header-fixed header-logo-app">
         <a href="/" class="header-title">LAKER LABURA</a>
@@ -16,9 +17,8 @@ use yii\helpers\Url;
         </div>
 
         <div class="menu-logo text-center">
-            <a href="#"><img class="rounded-circle bg-highlight" width="80" src="/images/avatars/5s.png"></a>
-            <h1 class="pt-3 font-800 font-28 text-uppercase">Adminnya</h1>
-            <p class="font-11 mt-n2">Put a little <span class="color-highlight">color</span> in your life.</p>
+            <a href="#"><img class="rounded-circle bg-highlight" width="80" src="<?=Url::to(['/images/avatars/5s.png']) ?>"></a>
+            <h1 class="pt-3 font-800 font-28 text-uppercase"><?=Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username?></h1>
         </div>
 
         <div class="menu-items">
@@ -53,12 +53,12 @@ use yii\helpers\Url;
                 <span>Pengaturan</span>
                 <i class="fa fa-circle"></i>
             </a>
-            <a id="nav-media" href="<?=Url::to(['arsip/index'])?>">
+            <a id="nav-media" href="<?=Url::to(['site/change-password'])?>">
                 <i data-feather="key" data-feather-line="1" data-feather-size="16" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-dark"></i>
                 <span>Ubah Password</span>
                 <i class="fa fa-circle"></i>
             </a>
-            <a href="<?=Url::to(['dashboard/logout'])?>">
+            <a href="<?=Url::to(['site/logout'])?>">
             <i data-feather="log-out" data-feather-line="1" data-feather-size="16" data-feather-color="red2-dark" data-feather-bg="red2-fade-dark"></i>
                 <span>Log Out</span>
             </a>
