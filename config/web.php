@@ -23,6 +23,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['site/login']
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -69,6 +70,21 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+
+    // $config['as access'] =  [
+    //     'class' => \yii\filters\AccessControl::className(),
+    //     'rules' => [
+    //         [
+    //             'actions' => ['login','error'],
+    //             'allow' => 'true'
+    //         ],
+    //         [
+    //             'actions' => ['logout'],
+    //             'allow' => 'true',
+    //             'roles' => ['@']
+    //         ],
+    //     ]
+    // ];
 }
 
 return $config;

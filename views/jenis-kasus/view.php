@@ -13,17 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jenis-kasus-view">
 
-    <div class="card card-style">
+    <div class="card card-style rounded-0">
         <div class="content">
             <p>
                 <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>
-                <?= Html::a('Hapus', ['delete', 'id' => $model->id], [
-                    'class' => 'btn shadow-xl btn-m bg-red1-light font-900',
-                    'data' => [
-                        'confirm' => 'Apakah kamu yakin ingin menghapus ini?',
-                        'method' => 'post',
-                    ],
-                ]) ?>
+                <?= Html::a('Hapus', ['delete', 'id' => $model->id], ['class' => 'btn shadow-xl btn-m bg-red1-light font-900']) ?>
             </p>
 
             <?= DetailView::widget([

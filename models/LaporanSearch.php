@@ -12,7 +12,7 @@ use app\models\Laporan;
 class LaporanSearch extends Laporan
 {
 
-    public $pelapor,$jenisKasus;
+    public $pelapor,$jenisKasus,$nomor_hp;
     /**
      * {@inheritdoc}
      */
@@ -20,7 +20,7 @@ class LaporanSearch extends Laporan
     {
         return [
             [['id', 'pelapor_id', 'jenis_kasus_id'], 'integer'],
-            [['kronologi', 'status','pelapor','jenisKasus'], 'safe'],
+            [['kronologi', 'status','nomor_hp','pelapor','jenisKasus'], 'safe'],
         ];
     }
 
@@ -71,6 +71,7 @@ class LaporanSearch extends Laporan
         $query->andFilterWhere(['like', 'kronologi', $this->kronologi])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like','pelapor.nama',$this->pelapor])
+            ->andFilterWhere(['like','pelapor.nomor_hp',$this->nomor_hp])
             ->andFilterWhere(['like','jenisKasus.nama',$this->jenisKasus]);
 
         return $dataProvider;

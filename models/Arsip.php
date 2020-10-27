@@ -29,10 +29,10 @@ class Arsip extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['laporan_id'], 'required'],
+            [['laporan_id','alasan'], 'required','message'=>'{attribute} tidak boleh kosong!'   ],
             [['laporan_id'], 'integer'],
             [['alasan'], 'string'],
-            [['laporan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pelapor::className(), 'targetAttribute' => ['laporan_id' => 'id']],
+            [['laporan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Laporan::className(), 'targetAttribute' => ['laporan_id' => 'id']],
         ];
     }
 

@@ -3,63 +3,64 @@
 
 use yii\helpers\Url;
 ?>
-    <nav class="navbar navbar-default bg-white shadow-sm">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    LAKER LABURA
-                </a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <!-- <li class="active"> -->
-                <li>
-                    <a href="<?=Url::to(['/'])?>">
-                        <i data-feather="home" data-feather-line="1" data-feather-size="16" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-dark"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=Url::to(['laporan/index'])?>">
-                        <i data-feather="file" data-feather-line="1" data-feather-size="16" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-dark"></i>
-                        <span>Laporan</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=Url::to(['pelapor/index'])?>">
-                        <i data-feather="users" data-feather-line="1" data-feather-size="16" data-feather-color="green1-dark" data-feather-bg="green1-fade-dark"></i>
-                        <span>Pelapor</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=Url::to(['korban/index'])?>">
-                        <i data-feather="users" data-feather-line="1" data-feather-size="16" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-dark"></i>
-                        <span>Korban</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=Url::to(['terlapor/index'])?>">
-                        <i data-feather="users" data-feather-line="1" data-feather-size="16" data-feather-color="red2-dark" data-feather-bg="red2-fade-dark"></i>
-                        <span>Terlapor</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=Url::to(['arsip/index'])?>">
-                        <i data-feather="mail" data-feather-line="1" data-feather-size="16" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-dark"></i>
-                        <span>Arsip</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=Url::to(['pengaturan/index'])?>">
-                        <i data-feather="settings" data-feather-line="1" data-feather-size="16" data-feather-color="gray2-dark" data-feather-bg="gray2-fade-dark"></i>
-                        <span>Pengaturan</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i data-feather="log-out" data-feather-line="1" data-feather-size="16" data-feather-color="gray2-dark" data-feather-bg="gray2-fade-dark"></i>
-                        <span>Log Out</span>
-                    </a>
-                </li>
-            </ul>
+    <div class="header header-fixed header-logo-app">
+        <a href="/" class="header-title">LAKER LABURA</a>
+        <!-- <a href="#" data-menu="menu-main" class="header-icon header-icon-1"><i class="fas fa-bars"></i></a> -->
+        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
+    </div>
+    
+    <div id="menu-main" class="menu-box-left bg-white menu-active" style="position:absolute;display:inline-block;" data-menu-width="260">  
+         <div class="menu-header">
+            <a href="/" class="color-dark1-dark font-900">LAKER LABURA</a>
         </div>
-    </nav>
+
+        <div class="menu-logo text-center">
+            <a href="#"><img class="rounded-circle bg-highlight" width="80" src="/images/avatars/5s.png"></a>
+            <h1 class="pt-3 font-800 font-28 text-uppercase">Adminnya</h1>
+            <p class="font-11 mt-n2">Put a little <span class="color-highlight">color</span> in your life.</p>
+        </div>
+
+        <div class="menu-items">
+            <h5 class="text-uppercase opacity-20 font-12 pl-3">Menu</h5>
+            <a id="nav-welcome" href="/">
+                <i data-feather="home" data-feather-line="1" data-feather-size="16" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-dark"></i>
+                <span>Home</span>
+                <i class="fa fa-circle"></i>
+            </a>
+
+            <a data-submenu="sub-laporan" href="#">
+                <i data-feather="file" data-feather-line="1" data-feather-size="16" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-dark"></i>
+                <span>Laporan</span>
+                <strong class="badge bg-highlight color-white">1</strong>
+                <i class="fa fa-circle"></i>
+            </a>
+
+            <div id="sub-laporan" class="submenu">
+                <a href="<?=Url::to(['laporan/baru'])?>"><i class="fa fa-file color-yellow1-dark font-16 opacity-30"></i><span>Laporan Baru</span><i class="fa fa-circle"></i></a>
+                <a href="<?=Url::to(['laporan/belum-selesai'])?>"><i class="fa fa-file color-blue1-dark font-16 opacity-50"></i><span>Laporan Belum Selesai</span><i class="fa fa-circle"></i></a>
+                <a href="<?=Url::to(['laporan/selesai'])?>"><i class="fa fa-file color-green1-dark font-16 opacity-30"></i><span>Laporan Selesai</span><i class="fa fa-circle"></i></a>
+                <a href="<?=Url::to(['laporan/arsip'])?>"><i class="fa fa-file color-red1-dark font-16 opacity-30"></i><span>Laporan Diarsipkan</span><i class="fa fa-circle"></i></a>
+            </div>
+
+            <a id="nav-media" href="<?=Url::to(['jenis-kasus/index'])?>">
+                <i data-feather="users" data-feather-line="1" data-feather-size="16" data-feather-color="green1-dark" data-feather-bg="green1-fade-dark"></i>
+                <span>Jenis Kasus</span>
+                <i class="fa fa-circle"></i>
+            </a>
+            <a id="nav-media" href="<?=Url::to(['pengaturan/index'])?>">
+                <i data-feather="settings" data-feather-line="1" data-feather-size="16" data-feather-color="gray2-dark" data-feather-bg="gray2-fade-dark"></i>
+                <span>Pengaturan</span>
+                <i class="fa fa-circle"></i>
+            </a>
+            <a id="nav-media" href="<?=Url::to(['arsip/index'])?>">
+                <i data-feather="key" data-feather-line="1" data-feather-size="16" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-dark"></i>
+                <span>Ubah Password</span>
+                <i class="fa fa-circle"></i>
+            </a>
+            <a href="<?=Url::to(['dashboard/logout'])?>">
+            <i data-feather="log-out" data-feather-line="1" data-feather-size="16" data-feather-color="red2-dark" data-feather-bg="red2-fade-dark"></i>
+                <span>Log Out</span>
+            </a>
+        </div>
+    </div>

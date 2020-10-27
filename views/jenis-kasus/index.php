@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jenis-kasus-index">
 
-    <div class="card card-style">
+    <div class="card card-style rounded-0">
         <div class="content">
 
             <p>
@@ -22,15 +22,27 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <?= GridView::widget([
+                'tableOptions' => ['class' => 'table table-striped '],
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
-                    'id',
+                    // 'id',
                     'nama',
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{update}{delete}',
+                        'buttons' => [
+                            'update' => function($url) {
+                                return Html::a('<span class="btn bg-highlight font-900" style="margin:0 12px;">Edit</span>', $url);
+                            },
+                            'delete' => function($url) {
+                                return Html::a('<span class="btn bg-red1-dark font-900">Hapus</span>', $url);
+                            }
+                        ]
+                    ],
                 ],
             ]); ?>
         

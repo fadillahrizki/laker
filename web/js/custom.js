@@ -2,8 +2,8 @@
 $(window).on('load',function(){
     $('.menu').css('display','block');
     $('#preloader').addClass('preloader-hide');
-
-})
+    
+}) 
 
 $(document).ready(function(){      
     'use strict'	
@@ -1333,7 +1333,7 @@ $(document).ready(function(){
         featherIcons();
 
         //Local Error Message
-        if (window.location.protocol === "file:"){$('a').on('mouseover',function(){console.log("You are seeing these errors because your file is on your local computer. For real life simulations please use a Live Server or a Local Server such as AMPPS or WAMPP or simulate a  Live Preview using a Code Editor like http://brackets.io (it's 100% free) - PWA functions and AJAX Page Transitions will only work in these scenarios.");});} 
+        // if (window.location.protocol === "file:"){$('a').on('mouseover',function(){console.log("You are seeing these errors because your file is on your local computer. For real life simulations please use a Live Server or a Local Server such as AMPPS or WAMPP or simulate a  Live Preview using a Code Editor like http://brackets.io (it's 100% free) - PWA functions and AJAX Page Transitions will only work in these scenarios.");});} 
 
         //Greetig Heading
         var pageTitle = $('.page-title-large, .page-title-small, .menu-header a');
@@ -1475,45 +1475,45 @@ $(document).ready(function(){
 	setTimeout(init_template, 0);
                
     //Activate AJAX Transitions    
-    if(isAJAX === true){
-        $(function(){
-            'use strict';
-            var options = {
-                prefetch: true,
-                prefetchOn: 'mouseover',
-                cacheLength: 100,
-                scroll: true, 
-                blacklist: '.default-link',
-                forms: 'contactForm',
-                onStart: {
-                    duration:150, // Duration of our animation
-                    render: function ($container) {
-                    $container.addClass('is-exiting');// Add your CSS animation reversing class
-                        $('.menu, .menu-hider').removeClass('menu-active');
-                        $('#preloader').removeClass('preloader-hide');
-                        return false;
-                    }
-                },
-                onReady: {
-                    duration: 10,
-                    render: function ($container, $newContent) {
-                        $container.removeClass('is-exiting');// Remove your CSS animation reversing class
-                        $container.html($newContent);// Inject the new content
-                        setTimeout(init_template, 0)//Timeout required to properly initiate all JS Functions. 
-                        $('#preloader').removeClass('preloader-hide');
-                    }
-                },
-                onAfter: function($container, $newContent) {
-                    setTimeout(function(){
-                        $('.menu').css('display','block');
-                        $('#preloader').addClass('preloader-hide');
-                    },150);
-                }
-            };
-          var smoothState = $('#page').smoothState(options).data('smoothState');
-           smoothState.clear();
-        });
-    }
+    // if(isAJAX === true){
+    //     $(function(){
+    //         'use strict';
+    //         var options = {
+    //             prefetch: true,
+    //             prefetchOn: 'mouseover',
+    //             cacheLength: 100,
+    //             scroll: true, 
+    //             blacklist: '.default-link',
+    //             forms: 'contactForm',
+    //             onStart: {
+    //                 duration:150, // Duration of our animation
+    //                 render: function ($container) {
+    //                 $container.addClass('is-exiting');// Add your CSS animation reversing class
+    //                     $('.menu, .menu-hider').removeClass('menu-active');
+    //                     $('#preloader').removeClass('preloader-hide');
+    //                     return false;
+    //                 }
+    //             },
+    //             onReady: {
+    //                 duration: 10,
+    //                 render: function ($container, $newContent) {
+    //                     $container.removeClass('is-exiting');// Remove your CSS animation reversing class
+    //                     $container.html($newContent);// Inject the new content
+    //                     setTimeout(init_template, 0)//Timeout required to properly initiate all JS Functions. 
+    //                     $('#preloader').removeClass('preloader-hide');
+    //                 }
+    //             },
+    //             onAfter: function($container, $newContent) {
+    //                 setTimeout(function(){
+    //                     $('.menu').css('display','block');
+    //                     $('#preloader').addClass('preloader-hide');
+    //                 },150);
+    //             }
+    //         };
+    //       var smoothState = $('#page').smoothState(options).data('smoothState');
+    //        smoothState.clear();
+    //     });
+    // }
 
     //Activate Development mode. Keeps caches clear.
     if(isDevelopment === true){

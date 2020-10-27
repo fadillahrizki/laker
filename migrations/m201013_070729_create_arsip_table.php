@@ -28,7 +28,7 @@ class m201013_070729_create_arsip_table extends Migration
             'fk-arsip-laporan_id',
             'arsip',
             'laporan_id',
-            'pelapor',
+            'laporan',
             'id',
             'CASCADE'
         );

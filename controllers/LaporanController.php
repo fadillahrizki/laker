@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Arsip;
 use app\models\JenisKasus;
 use app\models\Korban;
 use Yii;
@@ -34,9 +35,7 @@ class LaporanController extends Controller
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
+                'actions' => [],
             ],
         ];
     }
@@ -213,6 +212,138 @@ class LaporanController extends Controller
 
         return $this->render("cek",[
             "Pelapor"=>$Pelapor
+        ]);
+    }
+
+    function actionBaru(){
+
+        $searchModel = new LaporanSearch();
+        $searchModel->status = "Belum Diproses";
+
+        $query = Yii::$app->request->queryParams;
+        $dataProvider = $searchModel->search($query);
+
+        return $this->render('baru', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    function actionBaruDetail($id){
+        $Arsip = new Arsip();
+        $model = $this->findModel($id);
+        $request = Yii::$app->request;
+
+        if($model->load($request->post())){
+            
+            if($model->save()){
+                return $this->redirect(['baru']);
+            };
+
+        }
+
+        if($Arsip->load($request->post())){
+            $laporan = $this->findModel($Arsip->laporan_id);
+            $laporan->status = "Diarsipkan";
+            if($Arsip->save() && $laporan->save()){
+                return $this->redirect(['baru']);
+            };
+
+        }
+
+        return $this->render('baru_detail', [
+            'model' => $model,
+            'Arsip' => $Arsip
+        ]);
+    }
+
+    function actionBelumSelesaiDetail($id){
+        $model = $this->findModel($id);
+        $request = Yii::$app->request;
+
+        if($model->load($request->post())){
+            
+            if($model->save()){
+                return $this->redirect(['belum-selesai']);
+            };
+
+        }
+
+        return $this->render('belum_selesai_detail', [
+            'model' => $model,
+        ]);
+    }
+
+    function actionBelumSelesai(){
+        $searchModel = new LaporanSearch();
+        $searchModel->status = "Sedang Diproses";
+
+        $query = Yii::$app->request->queryParams;
+        $dataProvider = $searchModel->search($query);
+
+        return $this->render('selesai', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    function actionSelesaiDetail($id){
+        $model = $this->findModel($id);
+        $request = Yii::$app->request;
+
+        if($model->load($request->post())){
+            
+            if($model->save()){
+                return $this->redirect(['selesai']);
+            };
+
+        }
+
+        return $this->render('selesai_detail', [
+            'model' => $model,
+        ]);
+    }
+
+    function actionSelesai(){
+        $searchModel = new LaporanSearch();
+        $searchModel->status = "Selesai";
+
+        $query = Yii::$app->request->queryParams;
+        $dataProvider = $searchModel->search($query);
+
+        return $this->render('selesai', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    function actionArsipDetail($id){
+        $model = $this->findModel($id);
+        $request = Yii::$app->request;
+
+        if($model->load($request->post())){
+            
+            if($model->save()){
+                return $this->redirect(['arsip']);
+            };
+
+        }
+
+        return $this->render('arsip_detail', [
+            'model' => $model,
+        ]);
+    }
+
+    function actionArsip(){
+        $searchModel = new LaporanSearch();
+        $searchModel->status = "Diarsipkan";
+
+        $query = Yii::$app->request->queryParams;
+        $dataProvider = $searchModel->search($query);
+
+        return $this->render('arsip', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

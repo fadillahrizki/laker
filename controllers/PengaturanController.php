@@ -35,12 +35,14 @@ class PengaturanController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PengaturanSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = Pengaturan::find()->one();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'model'=>$model
         ]);
     }
 

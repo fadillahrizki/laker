@@ -8,6 +8,10 @@ use app\assets\AppAsset;
 use yii\helpers\Url;
 
 AppAsset::register($this);
+
+if (Yii::$app->user->isGuest) {
+    Yii::$app->response->redirect(Url::to(['dashboard/login'], true));
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -30,16 +34,21 @@ AppAsset::register($this);
 <div id="page">
     
     <?=$this->render('admin_header')?>
-    <div class="page-content">
-        <?php if($this->title != "Login") : ?>
-        <div class="card card-style text-center">
-            <div class="content">
-                <h2><?=$this->title?></h2>
+    <div class="page-content" style="margin-top:80px; margin-left:260px;">
+        
+        <div class="container">
+            
+            <?php if($this->title != "Login") : ?>
+            <div class="card card-style text-center rounded-0">
+                <div class="content">
+                    <h2><?=$this->title?></h2>
+                </div>
             </div>
-        </div>
-        <?php endif ?>
+            <?php endif ?>
 
-        <?= $content; ?>
+            <?= $content; ?>
+
+        </div>
         
     </div>
  

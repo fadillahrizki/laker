@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="pengaturan-form">
 
-<div class="card card-style">
+<div class="card card-style rounded-0">
     <div class="content">
 
         <?php $form = ActiveForm::begin(); ?>
