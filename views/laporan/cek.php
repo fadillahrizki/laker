@@ -12,11 +12,10 @@ $this->title = "Cek Laporan";
 
 <div id="cek">
     <div id="found" class="d-none">
-        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-green1-dark" role="alert">
-            <span><i class="fa fa-check"></i></span>
-            <strong>Laporan ditemukan!</strong>
-            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-        </div> 
+        <div id="toast" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
+            <i class="fa fa-check mr-3"></i>
+            Laporan tidak ditemukan!
+        </div>
         <div class="card card-style">
             <div class="content">
                 <div>
@@ -39,10 +38,9 @@ $this->title = "Cek Laporan";
 
     <div id="result"></div>
 
-    <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-red1-dark d-none" role="alert" id="not-found">
-        <span><i class="fa fa-times"></i></span>
-        <strong>Laporan tidak ditemukan!</strong>
-        <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-    </div>    
+    <div id="not-found" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
+        <i class="fa fa-check mr-3"></i>
+        Laporan tidak ditemukan!
+    </div>
 
 </div>

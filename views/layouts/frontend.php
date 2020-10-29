@@ -33,19 +33,28 @@ AppAsset::register($this);
  
     <div class="page-content">
 
-        <div class="page-title page-title-small">
-            <h2>
-                <?=isset($this->title) ? $this->title != "Home" ? "<a href='#' data-back-button><i class='fa fa-arrow-left'></i></a>" : "" : ""?>
-                <?=isset($this->title) ? $this->title : "Home"?>
-            </h2>
-            <!-- <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="/images/avatars/5s.png"></a> -->
-        </div>
 
-        <div class="card card-style">
-            <div class="content text-capitalize font-700">
-                Laporan kekerasan perempuan dan anak kabupaten Labuhanbatu Utara
+        <?php if($this->title == "Home"): ?>
+            <center>
+                <img src="<?=Url::to(['images/logo-banner.jpg'])?>" style="background-position:center; object-fit:cover; height:100px;" alt="Logo Banner">
+            </center>
+        <?php else: ?>
+
+            <div class="page-title page-title-small">
+                <h2>
+                    <?=isset($this->title) ? $this->title != "Home" ? "<a href='#' data-back-button><i class='fa fa-arrow-left'></i></a>" : "" : ""?>
+                    <?=isset($this->title) ? $this->title : "Home"?>
+                </h2>
+                <!-- <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="/images/avatars/5s.png"></a> -->
             </div>
-        </div>
+
+            <div class="card card-style">
+                <div class="content text-capitalize font-700">
+                    Laporan kekerasan perempuan dan anak kabupaten Labuhanbatu Utara
+                </div>
+            </div>
+
+        <?php endif ?>
 
         <?=$content?>
         

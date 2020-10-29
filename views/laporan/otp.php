@@ -4,44 +4,29 @@ use yii\helpers\Url;
 ?>
 
 <div id="phone">
-    <div id="success" class="d-none">
-        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-green1-dark" role="alert">
-            <span><i class="fa fa-check"></i></span>
-            <strong>Kode OTP berhasil dikirim!</strong>
-            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-        </div>    
+    <div id="success" class="toast toast-tiny toast-top shadow-xl bg-green1-dark" data-delay="3000" data-autohide="true">
+        <i class="fa fa-check mr-3"></i>
+        Kode OTP berhasil dikirim!
     </div>
 
-    <div id="failed" class="d-none">
-        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-red1-dark" role="alert">
-            <span><i class="fa fa-times"></i></span>
-            <strong>Kode OTP gagal dikirim!</strong>
-            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-        </div>    
+    <div id="failed" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
+        <i class="fa fa-check mr-3"></i>
+        Kode OTP gagal dikirim!
     </div>
 
-    <div id="expired" class="d-none">
-        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-red1-dark" role="alert">
-            <span><i class="fa fa-times"></i></span>
-            <strong>Masa berlaku OTP anda sudah habis!</strong>
-            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-        </div>    
+    <div id="expired" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
+        <i class="fa fa-check mr-3"></i>
+        Masa berlaku OTP anda sudah habis!
     </div>
 
-    <div id="verified" class="d-none">
-        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-green1-dark" role="alert">
-            <span><i class="fa fa-check"></i></span>
-            <strong>Berhasil Terverifikasi!</strong>
-            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-        </div>    
+    <div id="verified" class="toast toast-tiny toast-top shadow-xl bg-green1-dark" data-delay="3000" data-autohide="true">
+        <i class="fa fa-check mr-3"></i>
+        Berhasil Terverifikasi!
     </div>
 
-    <div id="notfound" class="d-none">
-        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-red1-dark" role="alert">
-            <span><i class="fa fa-times"></i></span>
-            <strong>OTP yang anda masukkan salah!</strong>
-            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-        </div>    
+    <div id="notfound" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
+        <i class="fa fa-check mr-3"></i>
+        OTP yang anda masukkan salah!
     </div>
 
     <div class="card card-style" id="inputs">
@@ -127,8 +112,9 @@ var parentPhone = document.querySelector("#phone")
                 const res = await json.json()
 
                 if(res.sent){
-                    parentPhone.querySelector("#success").classList.remove("d-none")
                     fgOtp.classList.remove("d-none")
+
+                    $('#phone #success').toast('show')
                     
                     if(action.toLowerCase() == "buat"){
                         otp.innerHTML = "Verifikasi"
@@ -137,11 +123,11 @@ var parentPhone = document.querySelector("#phone")
                     }
 
                 }else{
-                    parentPhone.querySelector("#failed").classList.remove("d-none")
+                    $('#phone #failed').toast('show')
                     otpD("Kirim Ulang")
                 }
             }catch{
-                parentPhone.querySelector("#failed").classList.remove("d-none")
+                $('#phone #failed').toast('show')
                 otpD("Kirim Ulang")
             }
 
@@ -183,20 +169,22 @@ var parentPhone = document.querySelector("#phone")
 
                             otp.innerHTML = "Terverifikasi"
 
-                            parentPhone.querySelector("#verified").classList.remove("d-none")
+                            $('#phone #verified').toast('show')
                             parentPhone.querySelector("#inputs").classList.add("d-none")
                             laporan.classList.remove("d-none")
                         }
 
                         if(res.expired){
-                            parentPhone.querySelector("#expired").classList.remove("d-none")
-                            otpInput.value = ""
-                            otpD("Verifikasi Ulang (masukkan otp) / Kirim Ulang")
+                            $('#phone #expired').toast('show')
+                            // otpInput.value = ""
+                            // otpD("Verifikasi Ulang (masukkan otp) / Kirim Ulang")
+                            otp.innerHTML = "Verifikasi Ulang"
                         }
 
                         if(res.found === false && res.expired === false){
-                            parentPhone.querySelector("#notfound").classList.remove("d-none")
-                            otpD("Verifikasi Ulang")
+                            $('#phone #notfound').toast('show')
+                            // otpD("Verifikasi Ulang")
+                            otp.innerHTML = "Verifikasi Ulang"
                         }
                     }else{
 
@@ -204,6 +192,7 @@ var parentPhone = document.querySelector("#phone")
 
                             let result = document.querySelector("#cek #result")
                             document.querySelector("#cek #found").classList.remove('d-none')
+                            $('#cek #found #toast').toast('show')
 
                             if(res.laporans.length){
                                 let html = ''
@@ -237,7 +226,7 @@ var parentPhone = document.querySelector("#phone")
                                 otp.innerHTML = "Ditemukan"
 
                             }else{
-                                document.querySelector("#cek #not-found").classList.remove('d-none')
+                                $('#cek #not-found').toast('show')
                                 otp.innerHTML = "Tidak ditemukann"
                             }
 
@@ -247,21 +236,27 @@ var parentPhone = document.querySelector("#phone")
                         }
 
                         if(res.expired){
-                            parentPhone.querySelector("#expired").classList.remove("d-none")
-                            otpInput.value = ""
-                            otpD("Verifikasi Ulang (masukkan otp) / Kirim Ulang")
+                            $('#phone #expired').toast('show')
+                            // otpInput.value = ""
+                            // otpD("Verifikasi Ulang (masukkan otp) / Kirim Ulang")
+                            otp.innerHTML = "Verifikasi Ulang"
                         }
 
                         if(res.found === false && res.expired === false){
-                            document.querySelector("#cek #notfound").classList.remove('d-none')
+                            $('#phone #notfound').toast('show')
                             // otpD("Verifikasi Ulang")
                             otp.innerHTML = "Verifikasi Ulang"
                         }
                     }
                 }
             }catch{
-                parentPhone.querySelector("#notfound").classList.remove("d-none")
-                otpD("Verifikasi Ulang")
+                $('#phone #notfound').toast('show')
+                // otpD("Verifikasi Ulang")
+                if(action.toLowerCase() == "buat"){
+                    otp.innerHTML = "Verifikasi Ulang"
+                }else if(action.toLowerCase() == "cek"){
+                    otp.innerHTML = "Cari Lagi"
+                }
             }
 
         }

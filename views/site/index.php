@@ -10,7 +10,7 @@ $this->title = 'Home';
 <div class="row text-center mb-0">
     <div class="col-12">
         <a href="<?=Url::to(['/laporan/buat'])?>" class="card card-style mb-3">
-            <div class="d-flex pt-3 pb-3">
+            <div class="d-flex py-5">
                 <div class="mt-2 pl-3 ml-2">
                     <h1 class="center-text">
                         <i data-feather="edit-2" 
@@ -32,7 +32,7 @@ $this->title = 'Home';
     </div>
     <div class="col-12">
         <a href="<?=Url::to(['/laporan/cek'])?>" class="card card-style mb-3">
-            <div class="d-flex pt-3 pb-3">
+            <div class="d-flex py-5">
                 <div class="mt-2 pl-3 ml-2">
                     <h1 class="center-text">
                         <i data-feather="search" 
@@ -54,7 +54,7 @@ $this->title = 'Home';
     </div>
     <div class="col-12">
         <a href="https://dpppa.labura.go.id/" class="card card-style mb-3">
-            <div class="d-flex pt-3 pb-3">
+            <div class="d-flex py-5">
                 <div class="mt-2 pl-3 ml-2">
                     <h1 class="center-text">
                         <i data-feather="file" 
@@ -76,7 +76,7 @@ $this->title = 'Home';
     </div>
     <div class="col-12">
         <a href="<?=Url::to(['/site/tentang'])?>" class="card card-style mb-3">
-            <div class="d-flex pt-3 pb-3">
+            <div class="d-flex py-5">
                 <div class="mt-2 pl-3 ml-2">
                     <h1>
                         <i data-feather="alert-circle" 

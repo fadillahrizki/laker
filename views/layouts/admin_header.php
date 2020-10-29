@@ -1,7 +1,10 @@
+<?php
 
-        <?php
-
+use app\models\Laporan;
 use yii\helpers\Url;
+
+    $countBaru = Laporan::find()->where(['status'=>"Belum Diproses"])->count();
+    $countBelum = Laporan::find()->where(['status'=>"Sedang Diproses"])->count();
 
 ?>
     <div class="header header-fixed header-logo-app">
@@ -32,13 +35,23 @@ use yii\helpers\Url;
             <a data-submenu="sub-laporan" href="#">
                 <i data-feather="file" data-feather-line="1" data-feather-size="16" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-dark"></i>
                 <span>Laporan</span>
-                <strong class="badge bg-highlight color-white">1</strong>
+                
                 <i class="fa fa-circle"></i>
             </a>
 
             <div id="sub-laporan" class="submenu">
-                <a href="<?=Url::to(['laporan/baru'])?>"><i class="fa fa-file color-yellow1-dark font-16 opacity-30"></i><span>Laporan Baru</span><i class="fa fa-circle"></i></a>
-                <a href="<?=Url::to(['laporan/belum-selesai'])?>"><i class="fa fa-file color-blue1-dark font-16 opacity-50"></i><span>Laporan Belum Selesai</span><i class="fa fa-circle"></i></a>
+                <a href="<?=Url::to(['laporan/baru'])?>">
+                    <i class="fa fa-file color-yellow1-dark font-16 opacity-30"></i>
+                    <span>Laporan Baru</span>
+                    <strong class="badge bg-highlight color-white"><?=$countBaru?></strong>
+                    <i class="fa fa-circle"></i>
+                </a>
+                <a href="<?=Url::to(['laporan/belum-selesai'])?>">
+                    <i class="fa fa-file color-blue1-dark font-16 opacity-50"></i>
+                    <span>Laporan Belum Selesai</span>
+                    <strong class="badge bg-highlight color-white"><?=$countBelum?></strong>
+                    <i class="fa fa-circle"></i>
+                </a>
                 <a href="<?=Url::to(['laporan/selesai'])?>"><i class="fa fa-file color-green1-dark font-16 opacity-30"></i><span>Laporan Selesai</span><i class="fa fa-circle"></i></a>
                 <a href="<?=Url::to(['laporan/arsip'])?>"><i class="fa fa-file color-red1-dark font-16 opacity-30"></i><span>Laporan Diarsipkan</span><i class="fa fa-circle"></i></a>
             </div>
