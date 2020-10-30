@@ -10,6 +10,7 @@ use app\models\Laporan;
 use app\models\LaporanSearch;
 use app\models\Otp;
 use app\models\Pelapor;
+use app\models\Pengaturan;
 use app\models\Terlapor;
 use DateTime;
 use DateTimeZone;
@@ -39,6 +40,16 @@ class LaporanController extends Controller
             ],
         ];
     }
+
+    public $pengaturan;
+
+    function beforeAction($action)
+    {
+        $this->pengaturan  = Pengaturan::find()->one();
+
+        return parent::beforeAction($action);
+    }
+
 
     public function actionDetail($id)
     {
@@ -80,8 +91,8 @@ class LaporanController extends Controller
             $client = new Client();
             $res = $client->post('https://masking.zenziva.net/api/sendsms/', [
                 'form_params'=>[
-                    'userkey' => 'dqolhx',
-                    'passkey' => '20j5k6rc051egqbjpkrr-alpha',
+                    'userkey' => $this->pengaturan->sms_user,
+                    'passkey' => $this->pengaturan->sms_password,
                     'nohp' => $nomor_hp,
                     'pesan' => $pesanOTP,
                 ]
@@ -171,6 +182,31 @@ class LaporanController extends Controller
                 $transaction->commit();
             
                 Yii::$app->session->addFlash("success", "Pembuatan laporan sukses");
+
+                $client = new Client();
+                
+                $client->post('https://masking.zenziva.net/api/sendsms/', [
+                    'form_params'=>[
+                        'userkey' => $this->pengaturan->sms_user,
+                        'passkey' => $this->pengaturan->sms_password,
+                        'nohp' => $this->pengaturan->sms_no_admin,
+                        'pesan' => str_replace("[id_laporan]",$Laporan->id,$this->pengaturan->konten_admin),
+                    ]
+                ]);
+
+                $for_replace = ["[nama_pelapor]","[id_laporan]"];
+                $to_replace = [$Pelapor->nama,$Laporan->id];
+
+                $pesan = str_replace($for_replace,$to_replace,$this->pengaturan->konten_user_masuk);
+
+                $client->post('https://masking.zenziva.net/api/sendsms/', [
+                    'form_params'=>[
+                        'userkey' => $this->pengaturan->sms_user,
+                        'passkey' => $this->pengaturan->sms_password,
+                        'nohp' => $Pelapor->nomor_hp,
+                        'pesan' => $pesan,
+                    ]
+                ]);
                 
                 return $this->redirect("");
             }catch(\Exception $e){
@@ -237,6 +273,23 @@ class LaporanController extends Controller
         if($model->load($request->post())){
             
             if($model->save()){
+
+                $client = new Client();
+
+                $for_replace = ["[nama_pelapor]","[id_laporan]"];
+                $to_replace = [$model->pelapor->nama,$model->id];
+
+                $pesan = str_replace($for_replace,$to_replace,$this->pengaturan->konten_user_tindak_lanjut);
+
+                $client->post('https://masking.zenziva.net/api/sendsms/', [
+                    'form_params'=>[
+                        'userkey' => $this->pengaturan->sms_user,
+                        'passkey' => $this->pengaturan->sms_password,
+                        'nohp' => $model->pelapor->nomor_hp,
+                        'pesan' => $pesan,
+                    ]
+                ]);
+
                 return $this->redirect(['baru']);
             };
 
@@ -246,6 +299,22 @@ class LaporanController extends Controller
             $laporan = $this->findModel($Arsip->laporan_id);
             $laporan->status = "Diarsipkan";
             if($Arsip->save() && $laporan->save()){
+                $client = new Client();
+
+                $for_replace = ["[nama_pelapor]","[id_laporan]"];
+                $to_replace = [$model->pelapor->nama,$model->id];
+
+                $pesan = str_replace($for_replace,$to_replace,$this->pengaturan->konten_arsip);
+
+                $client->post('https://masking.zenziva.net/api/sendsms/', [
+                    'form_params'=>[
+                        'userkey' => $this->pengaturan->sms_user,
+                        'passkey' => $this->pengaturan->sms_password,
+                        'nohp' => $model->pelapor->nomor_hp,
+                        'pesan' => $pesan,
+                    ]
+                ]);
+
                 return $this->redirect(['baru']);
             };
 
@@ -264,6 +333,22 @@ class LaporanController extends Controller
         if($model->load($request->post())){
             
             if($model->save()){
+                $client = new Client();
+
+                $for_replace = ["[nama_pelapor]","[id_laporan]"];
+                $to_replace = [$model->pelapor->nama,$model->id];
+
+                $pesan = str_replace($for_replace,$to_replace,$this->pengaturan->konten_selesai);
+
+                $client->post('https://masking.zenziva.net/api/sendsms/', [
+                    'form_params'=>[
+                        'userkey' => $this->pengaturan->sms_user,
+                        'passkey' => $this->pengaturan->sms_password,
+                        'nohp' => $model->pelapor->nomor_hp,
+                        'pesan' => $pesan,
+                    ]
+                ]);
+
                 return $this->redirect(['belum-selesai']);
             };
 
@@ -281,7 +366,7 @@ class LaporanController extends Controller
         $query = Yii::$app->request->queryParams;
         $dataProvider = $searchModel->search($query);
 
-        return $this->render('selesai', [
+        return $this->render('belum_selesai', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

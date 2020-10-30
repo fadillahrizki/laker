@@ -40,21 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'template' => '{view}{update}{delete}',
+                    'template' => '{update}{delete}',
                     'buttons' => [
-                        'view' => function($id, $model) {
-                            return Html::a('<span class="btn bg-yellow1-dark font-900">Lihat</span>', ['belum-selesai-detail', 'id' => $model['id']]);
-                        },
                         'update' => function($id, $model) {
-                            return Html::a('<span class="btn bg-highlight font-900" style="margin:0 12px;">Edit</span>', ['update', 'id' => $model['id']]);
+                            return Html::a('<span class="btn bg-highlight font-900" style="margin:0 12px;">Edit</span>', ['belum-selesai-detail', 'id' => $model['id']]);
                         },
                         'delete' => function($id, $model) {
                             return Html::a('Hapus', ['delete', 'id' => $model->id], [
                                 'class' => 'btn bg-red1-dark font-900',
-                                'data' => [
-                                    'confirm' => 'Apakah kamu yakin ingin menghapus ini?',
-                                    'method' => 'post',
-                                ],
                             ]);
                         },
                     ]

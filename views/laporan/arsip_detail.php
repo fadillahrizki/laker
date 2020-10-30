@@ -133,8 +133,9 @@ $this->title = "Laporan Diarsipkan : $model->id";
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="container-fluid my-5">
-    <?=$form->field($model,'status')->hiddenInput(['value'=>'Belum Diproses'])->label(false)?>
-        <button class="btn shadow-xl btn-m bg-highlight font-900">Batal Arsip</button>
+        <?=$form->field($model,'status')->hiddenInput(['value'=>'Belum Diproses'])->label(false)?>
+        <a href="<?=Url::to(['laporan/arsip'])?>" class="btn shadow-xl btn-m bg-highlight font-900">Simpan</a>
+        <button class="btn shadow-xl btn-m bg-red1-light font-900">Batal Arsip</button>
     </div>
     <?php ActiveForm::end() ?>
 

@@ -29,6 +29,8 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'konten_selesai')->textarea(['rows' => 6]) ?>
 
+        <?= $form->field($model, 'konten_arsip')->textarea(['rows' => 6]) ?>
+
         <?= $form->field($model, 'konten_kembali')->textarea(['rows' => 6]) ?>
 
         <div class="form-group">

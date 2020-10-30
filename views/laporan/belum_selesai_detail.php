@@ -132,6 +132,13 @@ $this->title = "Laporan Belum Selesai : $model->id";
 
     <?php $form = ActiveForm::begin(); ?>
 
+    
+    <div class="card card-style rounded-0">
+        <div class="content">
+            <?=$form->field($model,'penyelesaian')->textarea()?>    
+        </div>
+    </div>
+
     <div class="container-fluid my-5">
         <?=$form->field($model,'status')->hiddenInput(['value'=>'Selesai'])->label(false)?>
         <button class="btn shadow-xl btn-m bg-highlight font-900">Selesaikan Laporan</button>

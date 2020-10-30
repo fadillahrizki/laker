@@ -126,6 +126,10 @@ $this->title = "Laporan Selesai : $model->id";
                     <th>Kronologi Kejadian</th>
                     <td><?=$model->kronologi?></td>
                 </tr>
+                <tr>
+                    <th>Penyelesaian</th>
+                    <td><?=$model->penyelesaian?></td>
+                </tr>
             </table>
         </div>
     </div>

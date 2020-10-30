@@ -38,6 +38,7 @@ class PengaturanController extends Controller
         $model = Pengaturan::find()->one();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->addFlash("success", "Pengaturan berhasil disimpan!");
             return $this->redirect(['index']);
         }
 

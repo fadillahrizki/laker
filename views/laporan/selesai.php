@@ -48,10 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'delete' => function($id, $model) {
                             return Html::a('Hapus', ['delete', 'id' => $model->id], [
                                 'class' => 'btn bg-red1-dark font-900',
-                                'data' => [
-                                    'confirm' => 'Apakah kamu yakin ingin menghapus ini?',
-                                    'method' => 'post',
-                                ],
                             ]);
                         },
                     ]

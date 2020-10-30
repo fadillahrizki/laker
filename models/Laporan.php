@@ -36,7 +36,7 @@ class Laporan extends \yii\db\ActiveRecord
         return [
             [['pelapor_id', 'jenis_kasus_id','kronologi'], 'required','message'=>'{attribute} tidak boleh kosong!'],
             [['pelapor_id', 'jenis_kasus_id'], 'integer'],
-            [['kronologi'], 'string'],
+            [['kronologi','penyelesaian'], 'string'],
             [['status'], 'string', 'max' => 255],
             [['jenis_kasus_id'], 'exist', 'skipOnError' => true, 'targetClass' => JenisKasus::className(), 'targetAttribute' => ['jenis_kasus_id' => 'id']],
             [['pelapor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pelapor::className(), 'targetAttribute' => ['pelapor_id' => 'id']],
@@ -49,10 +49,11 @@ class Laporan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'ID Laporan',
             'pelapor_id' => 'Pelapor ID',
             'jenis_kasus_id' => 'Jenis Kasus',
             'kronologi' => 'Kronologi',
+            'penyelesaian' => 'Penyelesaian',
             'status' => 'Status',
         ];
     }

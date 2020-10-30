@@ -33,7 +33,7 @@ class Pengaturan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['konten_user_masuk', 'konten_user_tindak_lanjut', 'konten_selesai', 'konten_kembali'], 'string'],
+            [['konten_user_masuk', 'konten_user_tindak_lanjut', 'konten_selesai', 'konten_kembali','konten_arsip'], 'string'],
             [['sms_user', 'sms_password', 'sms_no_admin', 'konten_admin'], 'string', 'max' => 255],
         ];
     }
@@ -52,6 +52,7 @@ class Pengaturan extends \yii\db\ActiveRecord
             'konten_user_masuk' => 'Konten User Masuk',
             'konten_user_tindak_lanjut' => 'Konten User Tindak Lanjut',
             'konten_selesai' => 'Konten Selesai',
+            'konten_arsip' => 'Konten Arsip',
             'konten_kembali' => 'Konten Kembali',
         ];
     }
