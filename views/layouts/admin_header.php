@@ -43,13 +43,17 @@ use yii\helpers\Url;
                 <a href="<?=Url::to(['laporan/baru'])?>">
                     <i class="fa fa-file color-yellow1-dark font-16 opacity-30"></i>
                     <span>Laporan Baru</span>
+                    <?php if($countBaru): ?>
                     <strong class="badge bg-highlight color-white"><?=$countBaru?></strong>
+                    <?php endif;?>
                     <i class="fa fa-circle"></i>
                 </a>
                 <a href="<?=Url::to(['laporan/belum-selesai'])?>">
                     <i class="fa fa-file color-blue1-dark font-16 opacity-50"></i>
                     <span>Laporan Belum Selesai</span>
+                    <?php if($countBelum): ?>
                     <strong class="badge bg-highlight color-white"><?=$countBelum?></strong>
+                    <?php endif;?>
                     <i class="fa fa-circle"></i>
                 </a>
                 <a href="<?=Url::to(['laporan/selesai'])?>"><i class="fa fa-file color-green1-dark font-16 opacity-30"></i><span>Laporan Selesai</span><i class="fa fa-circle"></i></a>
