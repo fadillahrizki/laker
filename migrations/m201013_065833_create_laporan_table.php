@@ -13,12 +13,14 @@ class m201013_065833_create_laporan_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%laporan}}', [
-            'id' => $this->primaryKey(),
+            'id' => $this->string(8)->notNull(),
             'pelapor_id'=>$this->integer()->notNull(),
             'jenis_kasus_id'=>$this->integer()->notNull(),
             'kronologi'=>$this->text(),
             'status'=>$this->string()
         ]);
+
+        $this->addPrimaryKey('laporan_pk','laporan',['id']);
 
         $this->createIndex(
             'idx-laporan-pelapor_id',

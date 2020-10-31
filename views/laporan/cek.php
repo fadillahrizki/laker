@@ -35,6 +35,11 @@ $this->title = "Cek Laporan";
                     <div class="bg-blue1-dark result"></div>
                     Selesai
                 </div>
+
+                <div>
+                    <div class="bg-red1-dark result"></div>
+                    Diarsipkan
+                </div>
             </div>
         </div>
     </div>

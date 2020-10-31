@@ -14,7 +14,7 @@ class m201013_070729_create_arsip_table extends Migration
     {
         $this->createTable('{{%arsip}}', [
             'id' => $this->primaryKey(),
-            'laporan_id'=>$this->integer()->notNull(),
+            'laporan_id'=>$this->string()->notNull(),
             'alasan'=>$this->text(),
         ]);
 

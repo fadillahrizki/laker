@@ -33,8 +33,8 @@ class Terlapor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['alamat'], 'string'],
-            [['usia', 'laporan_id'], 'integer'],
+            [['alamat','laporan_id'], 'string'],
+            [['usia',], 'integer'],
             [['laporan_id','alamat','nama','jenis_kelamin'], 'required','message'=>'{attribute} tidak boleh kosong!'],
             [['nama', 'jenis_kelamin', 'nomor_hp'], 'string', 'max' => 255],
             [['laporan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Laporan::className(), 'targetAttribute' => ['laporan_id' => 'id']],

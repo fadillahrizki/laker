@@ -107,4 +107,9 @@ class Laporan extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Terlapor::className(), ['laporan_id'=>'id']);
     }
+
+    public function getArsip()
+    {
+        return $this->hasOne(Arsip::className(), ['laporan_id'=>'id']);
+    }
 }

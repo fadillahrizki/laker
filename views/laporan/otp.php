@@ -229,6 +229,8 @@ var parentPhone = document.querySelector("#phone")
                                         break;
                                         case "selesai": 
                                             status = "bg-blue1-dark";
+                                        case "diarsipkan": 
+                                        status = "bg-red1-dark";
                                         break;
                                     }
 

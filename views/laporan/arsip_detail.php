@@ -130,6 +130,19 @@ $this->title = "Laporan Diarsipkan : $model->id";
         </div>
     </div>
 
+    <div class="card card-style rounded-0">
+        <div class="content">
+            <h4>Arsip</h4>
+            <p></p>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Alasan</th>
+                    <td  width="70%"><?=$model->arsip->alasan?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="container-fluid my-5">

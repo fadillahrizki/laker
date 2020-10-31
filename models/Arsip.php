@@ -30,8 +30,7 @@ class Arsip extends \yii\db\ActiveRecord
     {
         return [
             [['laporan_id','alasan'], 'required','message'=>'{attribute} tidak boleh kosong!'   ],
-            [['laporan_id'], 'integer'],
-            [['alasan'], 'string'],
+            [['alasan','laporan_id'], 'string'],
             [['laporan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Laporan::className(), 'targetAttribute' => ['laporan_id' => 'id']],
         ];
     }

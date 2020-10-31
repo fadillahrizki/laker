@@ -169,6 +169,7 @@ class LaporanController extends Controller
 
                 $Pelapor->save();
                 
+                $Laporan->id = substr(md5($Pelapor->id.date("Y-m-d H:i:s")), 0, 8);
                 $Laporan->pelapor_id = $Pelapor->id;
                 $Laporan->status = "Belum Diproses";
                 $Laporan->save();
@@ -532,7 +533,7 @@ class LaporanController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Laporan::findOne($id)) !== null) {
+        if (($model = Laporan::find()->where(['id'=>$id])->one()) !== null) {
             return $model;
         }
 

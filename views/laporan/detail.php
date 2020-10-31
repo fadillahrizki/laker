@@ -144,5 +144,18 @@ $this->title = "Detail laporan : $model->id";
             </table>
         </div>
     </div>
-
+    <?php if ($model->arsip) : ?>
+    <div class="card card-style">
+        <div class="content">
+            <h4>Arsip</h4>
+            <p></p>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Alasan</th>
+                    <td  width="70%"><?=$model->arsip->alasan?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <?php endif ?>
 </div>
