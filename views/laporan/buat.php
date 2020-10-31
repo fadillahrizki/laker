@@ -58,13 +58,14 @@ if($success = Yii::$app->session->getFlash("success")):
         <h4>Korban</h4>
 
         <?= $form->field($Korban,"nama")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nama"]) ?>
-        <?= $form->field($Korban,"alamat")->textarea(['class'=>'form-control','placeholder'=>"Masukkan alamat"]) ?>
         <?= $form->field($Korban,"usia")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan usia"]) ?>
 
         <?= $form->field($Korban,"jenis_kelamin")->dropDownList([
             "Laki-laki"=>"Laki-laki",
             "Perempuan"=>"Perempuan",
         ],['class'=>'form-control','prompt'=>"- Pilih -"]) ?>
+
+        <?= $form->field($Korban,"alamat")->textarea(['class'=>'form-control','placeholder'=>"Masukkan alamat"]) ?>
 
         <?= $form->field($Korban,"nomor_hp")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan nomor hp (kosongkan jika tidak tahu)"]) ?>
     </div>
@@ -75,6 +76,7 @@ if($success = Yii::$app->session->getFlash("success")):
         <h4>Terlapor</h4>
 
         <?= $form->field($Terlapor,"nama")->textInput(['class'=>'form-control','placeholder'=>"Masukkan nama"]) ?>
+        <?= $form->field($Terlapor,"hubungan_dengan_korban")->textInput(['class'=>'form-control','placeholder'=>"Hubungan dengan korban"]) ?>
         <?= $form->field($Terlapor,"alamat")->textarea(['class'=>'form-control','placeholder'=>"Masukkan alamat"]) ?>
         <?= $form->field($Terlapor,"usia")->input('tel',['class'=>'form-control','placeholder'=>"Masukkan usia"]) ?>
 

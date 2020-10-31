@@ -106,6 +106,10 @@ $this->title = "Laporan Baru : $model->id";
                     <td  width="70%"><?=$model->terlapor->jenis_kelamin?></td>
                 </tr>
                 <tr>
+                    <th>Hubungan Dengan Korban</th>
+                    <td width="70%"><?=$model->terlapor->hubungan_dengan_korban?></td>
+                </tr>
+                <tr>
                     <th>Nomor HP</th>
                     <td  width="70%"><?=$model->terlapor->nomor_hp?></td>
                 </tr>

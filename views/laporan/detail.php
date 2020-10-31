@@ -121,6 +121,10 @@ $this->title = "Detail laporan : $model->id";
                     <td width="70%"><?=$model->terlapor->jenis_kelamin?></td>
                 </tr>
                 <tr>
+                    <th>Hubungan Dengan Korban</th>
+                    <td width="70%"><?=$model->terlapor->hubungan_dengan_korban?></td>
+                </tr>
+                <tr>
                     <th>Nomor HP</th>
                     <td width="70%"><?=$model->terlapor->nomor_hp?></td>
                 </tr>
@@ -141,6 +145,12 @@ $this->title = "Detail laporan : $model->id";
                     <th>Kronologi Kejadian</th>
                     <td width="70%"><?=$model->kronologi?></td>
                 </tr>
+                <?php if ($model->penyelesaian) : ?>
+                <tr>
+                    <th>Penyelesaian</th>
+                    <td width="70%"><?=$model->penyelesaian?></td>
+                </tr>
+                <?php endif ?>
             </table>
         </div>
     </div>

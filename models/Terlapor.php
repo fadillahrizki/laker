@@ -33,9 +33,9 @@ class Terlapor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['alamat','laporan_id'], 'string'],
+            [['alamat','laporan_id','hubungan_dengan_korban'], 'string'],
             [['usia',], 'integer'],
-            [['laporan_id','alamat','nama','jenis_kelamin'], 'required','message'=>'{attribute} tidak boleh kosong!'],
+            [['laporan_id','alamat','nama','jenis_kelamin', 'hubungan_dengan_korban'], 'required','message'=>'{attribute} tidak boleh kosong!'],
             [['nama', 'jenis_kelamin', 'nomor_hp'], 'string', 'max' => 255],
             [['laporan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Laporan::className(), 'targetAttribute' => ['laporan_id' => 'id']],
         ];
@@ -54,6 +54,7 @@ class Terlapor extends \yii\db\ActiveRecord
             'jenis_kelamin' => 'Jenis Kelamin',
             'nomor_hp' => 'Nomor Hp',
             'laporan_id' => 'Laporan ID',
+            'hubungan_dengan_korban' => 'Hubungan Dengan Korban',
         ];
     }
 
