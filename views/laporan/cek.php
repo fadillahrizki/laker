@@ -42,7 +42,7 @@ $this->title = "Cek Laporan";
     <div id="result"></div>
 
     <div id="not-found" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
-        <i class="fa fa-check mr-3"></i>
+        <i class="fa fa-times mr-3"></i>
         Laporan tidak ditemukan!
     </div>
 

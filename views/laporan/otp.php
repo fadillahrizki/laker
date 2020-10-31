@@ -10,17 +10,17 @@ use yii\helpers\Url;
     </div>
 
     <div id="failed" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true" style="width:100%">
-        <i class="fa fa-check mr-3"></i>
+        <i class="fa fa-times mr-3"></i>
         Kode OTP gagal dikirim!
     </div>
 
     <div id="not-registered" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true" style="width:100%">
-        <i class="fa fa-check mr-3"></i>
+        <i class="fa fa-times mr-3"></i>
         Nomor ini belum pernah membuat laporan!
     </div>
 
     <div id="expired" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true" style="width:100%">
-        <i class="fa fa-check mr-3"></i>
+        <i class="fa fa-times mr-3"></i>
         Masa berlaku OTP anda sudah habis!
     </div>
 
@@ -30,7 +30,7 @@ use yii\helpers\Url;
     </div>
 
     <div id="notfound" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true" style="width:100%">
-        <i class="fa fa-check mr-3"></i>
+        <i class="fa fa-times mr-3"></i>
         OTP yang anda masukkan salah!
     </div>
 
