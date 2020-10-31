@@ -180,8 +180,6 @@ class LaporanController extends Controller
                 $Terlapor->save();
                 
                 $transaction->commit();
-            
-                Yii::$app->session->addFlash("success", "Pembuatan laporan sukses");
 
                 $client = new Client();
                 
@@ -207,8 +205,10 @@ class LaporanController extends Controller
                         'pesan' => $pesan,
                     ]
                 ]);
+
+                Yii::$app->session->addFlash("success", "Pembuatan laporan sukses");
                 
-                return $this->redirect("");
+                return $this->redirect(['site/index']);
             }catch(\Exception $e){
                 $transaction->rollback();
             }
@@ -221,6 +221,16 @@ class LaporanController extends Controller
             'Terlapor'=>$Terlapor,
             'JenisKasus'=>$JenisKasus
         ]);
+    }
+
+    function actionIsCek($nomor_hp){
+        $Pelapor = Pelapor::find()->where(['nomor_hp'=>$nomor_hp])->count();   
+
+        if($Pelapor){
+            return $this->asJson($Pelapor);
+        }
+
+        return $this->asJson(null);
     }
 
     function actionCek(){

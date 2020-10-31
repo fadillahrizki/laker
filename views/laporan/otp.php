@@ -4,27 +4,32 @@ use yii\helpers\Url;
 ?>
 
 <div id="phone">
-    <div id="success" class="toast toast-tiny toast-top shadow-xl bg-green1-dark" data-delay="3000" data-autohide="true">
+    <div id="success" class="toast toast-tiny toast-top shadow-xl bg-green1-dark" data-delay="3000" data-autohide="true" style="width:100%">
         <i class="fa fa-check mr-3"></i>
         Kode OTP berhasil dikirim!
     </div>
 
-    <div id="failed" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
+    <div id="failed" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true" style="width:100%">
         <i class="fa fa-check mr-3"></i>
         Kode OTP gagal dikirim!
     </div>
 
-    <div id="expired" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
+    <div id="not-registered" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true" style="width:100%">
+        <i class="fa fa-check mr-3"></i>
+        Nomor ini belum pernah membuat laporan!
+    </div>
+
+    <div id="expired" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true" style="width:100%">
         <i class="fa fa-check mr-3"></i>
         Masa berlaku OTP anda sudah habis!
     </div>
 
-    <div id="verified" class="toast toast-tiny toast-top shadow-xl bg-green1-dark" data-delay="3000" data-autohide="true">
+    <div id="verified" class="toast toast-tiny toast-top shadow-xl bg-green1-dark" data-delay="3000" data-autohide="true" style="width:100%">
         <i class="fa fa-check mr-3"></i>
         Berhasil Terverifikasi!
     </div>
 
-    <div id="notfound" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
+    <div id="notfound" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true" style="width:100%">
         <i class="fa fa-check mr-3"></i>
         OTP yang anda masukkan salah!
     </div>
@@ -105,6 +110,20 @@ var parentPhone = document.querySelector("#phone")
         const action = "<?=$action?>"
 
         if(otpInput.value == ""){
+            if(action.toLowerCase() == "cek"){
+                let isCek = await fetch(`<?=Url::to(["laporan/is-cek"])?>?nomor_hp=${phone.value}`)
+                isCek = await isCek.json()
+
+                otp.innerHTML = "Mengecek..."
+
+                if(!isCek){
+                    $('#phone #not-registered').toast('show')
+
+                    otp.innerHTML = "Kirim OTP"
+                    return
+                }
+            }
+
             otp.innerHTML = "Mengirim..."
 
             try{
@@ -190,11 +209,13 @@ var parentPhone = document.querySelector("#phone")
 
                         if(res.found){
 
-                            let result = document.querySelector("#cek #result")
-                            document.querySelector("#cek #found").classList.remove('d-none')
-                            $('#cek #found #toast').toast('show')
 
                             if(res.laporans.length){
+                            
+                                let result = document.querySelector("#cek #result")
+                                document.querySelector("#cek #found").classList.remove('d-none')
+                                $('#cek #success').toast('show')
+                                
                                 let html = ''
                                 res.laporans.forEach(laporan=>{
                                     let status = ''

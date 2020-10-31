@@ -19,11 +19,11 @@ $this->title = "Detail laporan : $model->id";
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>ID Laporan</th>
-                    <td><?=$model->id?></td>
+                    <td width="70%"><?=$model->id?></td>
                 </tr>
                 <tr>
                     <th>Status</th>
-                    <td><?=$model->status?></td>
+                    <td width="70%"><?=$model->status?></td>
                 </tr>
             </table>
         </div>
@@ -36,35 +36,35 @@ $this->title = "Detail laporan : $model->id";
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Rahasiakan data saya</th>
-                    <td><?=$model->pelapor->is_rahasia?></td>
+                    <td width="70%"><?=$model->pelapor->is_rahasia?></td>
                 </tr>
                 <tr>
                     <th>Nama</th>
-                    <td><?=$model->pelapor->nama?></td>
+                    <td width="70%"><?=$model->pelapor->nama?></td>
                 </tr>
                 <tr>
                     <th>Alamat</th>
-                    <td><?=$model->pelapor->alamat?></td>
+                    <td width="70%"><?=$model->pelapor->alamat?></td>
                 </tr>
                 <tr>
                     <th>Usia</th>
-                    <td><?=$model->pelapor->usia?></td>
+                    <td width="70%"><?=$model->pelapor->usia?></td>
                 </tr>
                 <tr>
                     <th>Jenis Kelamin</th>
-                    <td><?=$model->pelapor->jenis_kelamin?></td>
+                    <td width="70%"><?=$model->pelapor->jenis_kelamin?></td>
                 </tr>
                 <tr>
                     <th>Nomor HP</th>
-                    <td><?=$model->pelapor->nomor_hp?></td>
+                    <td width="70%"><?=$model->pelapor->nomor_hp?></td>
                 </tr>
                 <tr>
                     <th>Pelapor adalah korban</th>
-                    <td><?=$model->pelapor->is_korban?></td>
+                    <td width="70%"><?=$model->pelapor->is_korban?></td>
                 </tr>
                 <tr>
                     <th>Hubungan dengan korban</th>
-                    <td><?=$model->pelapor->hubungan_dengan_korban?></td>
+                    <td width="70%"><?=$model->pelapor->hubungan_dengan_korban?></td>
                 </tr>
             </table>
         </div>
@@ -77,23 +77,23 @@ $this->title = "Detail laporan : $model->id";
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Nama</th>
-                    <td><?=$model->korban->nama?></td>
+                    <td width="70%"><?=$model->korban->nama?></td>
                 </tr>
                 <tr>
                     <th>Alamat</th>
-                    <td><?=$model->korban->alamat?></td>
+                    <td width="70%"><?=$model->korban->alamat?></td>
                 </tr>
                 <tr>
                     <th>Usia</th>
-                    <td><?=$model->korban->usia?></td>
+                    <td width="70%"><?=$model->korban->usia?></td>
                 </tr>
                 <tr>
                     <th>Jenis Kelamin</th>
-                    <td><?=$model->korban->jenis_kelamin?></td>
+                    <td width="70%"><?=$model->korban->jenis_kelamin?></td>
                 </tr>
                 <tr>
                     <th>Nomor HP</th>
-                    <td><?=$model->korban->nomor_hp?></td>
+                    <td width="70%"><?=$model->korban->nomor_hp?></td>
                 </tr>
             </table>
         </div>
@@ -106,23 +106,23 @@ $this->title = "Detail laporan : $model->id";
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Nama</th>
-                    <td><?=$model->terlapor->nama?></td>
+                    <td width="70%"><?=$model->terlapor->nama?></td>
                 </tr>
                 <tr>
                     <th>Alamat</th>
-                    <td><?=$model->terlapor->alamat?></td>
+                    <td width="70%"><?=$model->terlapor->alamat?></td>
                 </tr>
                 <tr>
                     <th>Usia</th>
-                    <td><?=$model->terlapor->usia?></td>
+                    <td width="70%"><?=$model->terlapor->usia?></td>
                 </tr>
                 <tr>
                     <th>Jenis Kelamin</th>
-                    <td><?=$model->terlapor->jenis_kelamin?></td>
+                    <td width="70%"><?=$model->terlapor->jenis_kelamin?></td>
                 </tr>
                 <tr>
                     <th>Nomor HP</th>
-                    <td><?=$model->terlapor->nomor_hp?></td>
+                    <td width="70%"><?=$model->terlapor->nomor_hp?></td>
                 </tr>
             </table>
         </div>
@@ -135,11 +135,11 @@ $this->title = "Detail laporan : $model->id";
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Jenis Kasus</th>
-                    <td><?=$model->jenisKasus->nama?></td>
+                    <td width="70%"><?=$model->jenisKasus->nama?></td>
                 </tr>
                 <tr>
                     <th>Kronologi Kejadian</th>
-                    <td><?=$model->kronologi?></td>
+                    <td width="70%"><?=$model->kronologi?></td>
                 </tr>
             </table>
         </div>

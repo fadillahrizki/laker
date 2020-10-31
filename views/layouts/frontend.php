@@ -42,8 +42,7 @@ AppAsset::register($this);
             <div class="card card-style">
                 <div class="content">
                     <h2 class="color-highlight">
-                        <?=isset($this->title) ? $this->title != "Home" ? "<a href='#' data-back-button class='mr-4'><i class='fa fa-arrow-left'></i></a>" : "" : ""?>
-                        <?=isset($this->title) ? $this->title : "Home"?>
+                        <?=isset($this->title) ? $this->title : "Laker Labura"?>
                     </h2>
                 </div>
             </div>

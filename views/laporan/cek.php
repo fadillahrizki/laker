@@ -11,11 +11,14 @@ $this->title = "Cek Laporan";
 <?= $this->render('otp',['action'=>'cek']) ?>
 
 <div id="cek">
+
+    <div id="success" class="toast toast-tiny toast-top shadow-xl bg-green1-dark" data-delay="3000" data-autohide="true">
+        <i class="fa fa-check mr-3"></i>
+        Laporan ditemukan!
+    </div>
+
     <div id="found" class="d-none">
-        <div id="toast" class="toast toast-tiny toast-top shadow-xl bg-red1-dark" data-delay="3000" data-autohide="true">
-            <i class="fa fa-check mr-3"></i>
-            Laporan tidak ditemukan!
-        </div>
+       
         <div class="card card-style">
             <div class="content">
                 <div>
