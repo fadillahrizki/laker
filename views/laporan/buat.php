@@ -1,6 +1,6 @@
 <?php
 
-use dosamigos\ckeditor\CKEditor;
+use dosamigos\tinymce\TinyMce;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -98,9 +98,9 @@ if($success = Yii::$app->session->getFlash("success")):
         <?= $form->field($Laporan,"jenis_kasus_id")->dropDownList(
             ArrayHelper::map($JenisKasus, 'id', 'nama')
             ,['class'=>'form-control','prompt'=>"- Pilih -"]) ?>
-        <?= $form->field($Laporan,"kronologi")->widget(CKEditor::className(), [
+        <?= $form->field($Laporan,"kronologi")->widget(TinyMce::className(), [
             'options' => ['rows' => 6],
-            'preset' => 'basic',
+            
         ])  ?>
     </div>
 </div>
