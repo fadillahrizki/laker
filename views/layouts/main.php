@@ -7,11 +7,6 @@ use yii\helpers\Html;
 use app\assets\AppAsset;
 use yii\helpers\Url;
 
-if (Yii::$app->user->isGuest) {
-    Yii::$app->response->redirect(Url::to(['site/login'], true));
-}
-
-
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
