@@ -10,23 +10,26 @@ $(document).ready(function(){
 
     let menuMain = $("#menu-main")
 
-    $("#btn-sb").click(function(){
-        menuMain.toggleClass("menu-active")
-
+    if(menuMain){
+        $("#btn-sb").click(function(){
+            menuMain.toggleClass("menu-active")
+    
+            if(menuMain.hasClass("menu-active")){
+                ctn.css("margin-left","260px")
+            }else{
+                ctn.css("margin-left","0")
+            }
+        })
+    
+        let ctn = $("#page-content")
+    
         if(menuMain.hasClass("menu-active")){
             ctn.css("margin-left","260px")
         }else{
             ctn.css("margin-left","0")
         }
-    })
-
-    let ctn = $("#page-content")
-
-    if(menuMain.hasClass("menu-active")){
-        ctn.css("margin-left","260px")
-    }else{
-        ctn.css("margin-left","0")
     }
+
 
     var isAJAX = true; //Enables or disable AJAX page transitions and loading.
     var isDevelopment = false; // Enables development mode. Clean cache & Stops BG & Highlights from changing defaults.
