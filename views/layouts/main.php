@@ -25,6 +25,7 @@ AppAsset::register($this);
     <link rel="manifest" href="/_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
     <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/icon-192x192.png">
     <?php $this->head() ?>
+    <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 </head>
 <body class="theme-light" data-background="none" data-highlight="blue2">
 <?php $this->beginBody() ?>

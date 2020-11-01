@@ -1,7 +1,5 @@
 <?php
 
-use dosamigos\ckeditor\CKEditor;
-use dosamigos\tinymce\TinyMce;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -140,10 +138,7 @@ $this->title = "Laporan Belum Selesai : $model->id";
     
     <div class="card card-style rounded-0">
         <div class="content">
-            <?= $form->field($model,"penyelesaian")->widget(TinyMce::className(), [
-            'options' => ['rows' => 6],
-            
-            ])  ?>
+            <?= $form->field($model,"penyelesaian")->textarea(['rows'=>6,'id'=>'editor'])  ?>
         </div>
     </div>
 
@@ -154,3 +149,8 @@ $this->title = "Laporan Belum Selesai : $model->id";
     <?php ActiveForm::end() ?>
 
 </div>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+</script>
