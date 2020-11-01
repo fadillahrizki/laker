@@ -6,10 +6,6 @@ use yii\helpers\Url;
     $countBaru = Laporan::find()->where(['status'=>"Belum Diproses"])->count();
     $countBelum = Laporan::find()->where(['status'=>"Sedang Diproses"])->count();
 
-    // if (Yii::$app->user->isGuest) {
-    //     Yii::$app->response->redirect(Url::to(['site/login'], true));
-    // }    
-
 ?>
     <div class="header header-fixed header-logo-app">
         <a href="/" class="header-title">LAKER LABURA</a>
