@@ -35,7 +35,7 @@ AppAsset::register($this);
 <div id="page">
     
     <?=$this->render('admin_header')?>
-    <div class="page-content" style="margin-top:80px; margin-left:260px;">
+    <div class="page-content" id="page-content" style="margin-top:80px;">
         
         <div class="container">
             

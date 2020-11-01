@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -149,7 +150,10 @@ $this->title = "Laporan Baru : $model->id";
             <h4>Arsip</h4>
             <p></p>
             <?=$ars->field($Arsip,'laporan_id')->hiddenInput(['value'=>$model->id])->label(false)?>
-            <?=$ars->field($Arsip,'alasan')->textarea()?>
+            <?= $form->field($Arsip,"alasan")->widget(CKEditor::className(), [
+                'options' => ['rows' => 6],
+                'preset' => 'basic',
+            ])  ?>
             <button class="btn bg-highlight shadow-xl btn-m font-900">Arsipkan Laporan</button>
         </div>
     </div>

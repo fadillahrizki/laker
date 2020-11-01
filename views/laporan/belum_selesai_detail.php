@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -135,11 +136,13 @@ $this->title = "Laporan Belum Selesai : $model->id";
     </div>
 
     <?php $form = ActiveForm::begin(); ?>
-
     
     <div class="card card-style rounded-0">
         <div class="content">
-            <?=$form->field($model,'penyelesaian')->textarea()?>    
+            <?= $form->field($model,"penyelesaian")->widget(CKEditor::className(), [
+                'options' => ['rows' => 6],
+                'preset' => 'basic',
+            ])  ?>
         </div>
     </div>
 
