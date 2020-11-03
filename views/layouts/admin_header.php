@@ -20,7 +20,7 @@ use yii\helpers\Url;
         </div>
 
         <div class="menu-logo text-center">
-            <a href="#"><img class="rounded-circle bg-highlight" width="80" src="<?=Url::to(['/images/avatars/5s.png']) ?>"></a>
+            <a href="#"><img class="rounded-circle bg-highlight" width="80" src="<?=Url::to(['/images/logo.jpg']) ?>"></a>
             <h1 class="pt-3 font-800 font-28 text-uppercase"><?=Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username?></h1>
         </div>
 

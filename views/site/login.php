@@ -2,7 +2,7 @@
 
 use yii\widgets\ActiveForm;
 
-$this->title = "Login";
+$this->title = "Login Laker Labura";
 
 $form = ActiveForm::begin();
 
@@ -44,13 +44,6 @@ AppAsset::register($this);
             <?= $form->field($model,'rememberMe')->checkbox() ?>
 
             <button class="btn btn-m mt-2 mb-4 btn-full btn-block bg-green1-dark rounded-sm text-uppercase font-900">Login</button>
-
-            <div class="divider mt-4 mb-3"></div>
-
-            <div class="d-flex">
-                <div class="w-50 font-11 pb-2 color-theme opacity-60 pb-3 text-left"><a href="#" class="color-theme">Create Account</a></div>
-                <div class="w-50 font-11 pb-2 color-theme opacity-60 pb-3 text-right"><a href="#" class="color-theme">Forgot Credentials</a></div>
-            </div>
         </div>
         
     </div>
