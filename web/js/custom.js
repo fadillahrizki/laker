@@ -11,6 +11,11 @@ $(document).ready(function(){
     let menuMain = $("#menu-main")
 
     if(menuMain){
+
+        if(window.innerWidth > 500){
+            menuMain.addClass("menu-active")
+        }
+
         $("#btn-sb").click(function(){
             menuMain.toggleClass("menu-active")
     

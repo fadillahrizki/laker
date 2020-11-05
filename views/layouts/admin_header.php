@@ -14,7 +14,7 @@ use yii\helpers\Url;
         <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
     
-    <div id="menu-main" class="menu-box-left bg-white menu-active" style="position:absolute;display:inline-block;" data-menu-width="260">  
+    <div id="menu-main" class="menu-box-left bg-white" style="position:absolute;display:inline-block;" data-menu-width="260">  
          <div class="menu-header">
             <a href="/" class="color-dark1-dark font-900">LAKER LABURA</a>
         </div>
