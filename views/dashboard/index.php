@@ -27,7 +27,7 @@ $this->title = "Home"
     <div class="content">
         <span class="icon icon-l">
             <i class="fa fa-file rounded-m bg-blue1-dark mb-3 mr-3"></i>
-            <h1 class="d-inline"><?=$countSelesai?></h1>
+            <h1 class="d-inline"><?=$countBelum?></h1>
         </span>
         <h5 class="mb-n1 font-15 line-height-s font-600 color-theme">Laporan Belum Selesai</h5>
     </div>
