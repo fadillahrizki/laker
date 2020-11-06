@@ -29,34 +29,25 @@ use yii\helpers\Url;
                 <span>Home</span>
                 <i class="fa fa-circle"></i>
             </a>
-
-            <a data-submenu="sub-laporan" href="#">
-                <i data-feather="file" data-feather-line="1" data-feather-size="16" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-dark"></i>
-                <span>Laporan</span>
-                
+            
+            <a href="<?=Url::to(['laporan/baru'])?>">
+                <i class="fa fa-file color-yellow1-dark font-16 opacity-30"></i>
+                <span>Laporan Baru</span>
+                <?php if($countBaru): ?>
+                <strong class="badge bg-highlight color-white"><?=$countBaru?></strong>
+                <?php endif;?>
                 <i class="fa fa-circle"></i>
             </a>
-
-            <div id="sub-laporan" class="submenu">
-                <a href="<?=Url::to(['laporan/baru'])?>">
-                    <i class="fa fa-file color-yellow1-dark font-16 opacity-30"></i>
-                    <span>Laporan Baru</span>
-                    <?php if($countBaru): ?>
-                    <strong class="badge bg-highlight color-white"><?=$countBaru?></strong>
-                    <?php endif;?>
-                    <i class="fa fa-circle"></i>
-                </a>
-                <a href="<?=Url::to(['laporan/belum-selesai'])?>">
-                    <i class="fa fa-file color-blue1-dark font-16 opacity-50"></i>
-                    <span>Laporan Belum Selesai</span>
-                    <?php if($countBelum): ?>
-                    <strong class="badge bg-highlight color-white"><?=$countBelum?></strong>
-                    <?php endif;?>
-                    <i class="fa fa-circle"></i>
-                </a>
-                <a href="<?=Url::to(['laporan/selesai'])?>"><i class="fa fa-file color-green1-dark font-16 opacity-30"></i><span>Laporan Selesai</span><i class="fa fa-circle"></i></a>
-                <a href="<?=Url::to(['laporan/arsip'])?>"><i class="fa fa-file color-red1-dark font-16 opacity-30"></i><span>Laporan Diarsipkan</span><i class="fa fa-circle"></i></a>
-            </div>
+            <a href="<?=Url::to(['laporan/belum-selesai'])?>">
+                <i class="fa fa-file color-blue1-dark font-16 opacity-50"></i>
+                <span>Laporan Belum Selesai</span>
+                <?php if($countBelum): ?>
+                <strong class="badge bg-highlight color-white"><?=$countBelum?></strong>
+                <?php endif;?>
+                <i class="fa fa-circle"></i>
+            </a>
+            <a href="<?=Url::to(['laporan/selesai'])?>"><i class="fa fa-file color-green1-dark font-16 opacity-30"></i><span>Laporan Selesai</span><i class="fa fa-circle"></i></a>
+            <a href="<?=Url::to(['laporan/arsip'])?>"><i class="fa fa-file color-red1-dark font-16 opacity-30"></i><span>Laporan Diarsipkan</span><i class="fa fa-circle"></i></a>
 
             <a id="nav-media" href="<?=Url::to(['jenis-kasus/index'])?>">
                 <i data-feather="users" data-feather-line="1" data-feather-size="16" data-feather-color="green1-dark" data-feather-bg="green1-fade-dark"></i>
