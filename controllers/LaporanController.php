@@ -50,6 +50,16 @@ class LaporanController extends Controller
         return parent::beforeAction($action);
     }
 
+    function actionGetNotify()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            $laporan = Laporan::find()->where(['status'=>'Notify'])->all();
+            Laporan::updateAll(['status'=>'Belum Diproses'],['status'=>'Notify']);
+            return $laporan;
+        }
+    }
+
 
     public function actionDetail($id)
     {
@@ -171,7 +181,8 @@ class LaporanController extends Controller
                 
                 $Laporan->id = substr(md5($Pelapor->id.date("Y-m-d H:i:s")), 0, 8);
                 $Laporan->pelapor_id = $Pelapor->id;
-                $Laporan->status = "Belum Diproses";
+                // $Laporan->status = "Belum Diproses";
+                $Laporan->status = "Notify";
                 $Laporan->save();
                 
                 $Korban->laporan_id = $Laporan->id;
@@ -265,7 +276,7 @@ class LaporanController extends Controller
     function actionBaru(){
 
         $searchModel = new LaporanSearch();
-        $searchModel->status = "Belum Diproses";
+        $searchModel->status = ["Belum Diproses","Notify"];
 
         $query = Yii::$app->request->queryParams;
         $dataProvider = $searchModel->search($query);

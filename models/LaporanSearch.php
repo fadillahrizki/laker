@@ -68,9 +68,14 @@ class LaporanSearch extends Laporan
             'jenis_kasus_id' => $this->jenis_kasus_id,
         ]);
 
-        $query->andFilterWhere(['like', 'kronologi', $this->kronologi])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like','pelapor.nama',$this->pelapor])
+        $query->andFilterWhere(['like', 'kronologi', $this->kronologi]);
+
+        if(is_array($this->status))
+            $query->andFilterWhere(['in', 'status', $this->status]);
+        else
+            $query->andFilterWhere(['like', 'status', $this->status]);
+
+        $query->andFilterWhere(['like','pelapor.nama',$this->pelapor])
             ->andFilterWhere(['like','pelapor.nomor_hp',$this->nomor_hp])
             ->andFilterWhere(['like','jenisKasus.nama',$this->jenisKasus]);
 

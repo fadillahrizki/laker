@@ -3,7 +3,7 @@
 use app\models\Laporan;
 use yii\helpers\Url;
 
-    $countBaru = Laporan::find()->where(['status'=>"Belum Diproses"])->count();
+    $countBaru = Laporan::find()->where(['status'=>"Belum Diproses"])->orWhere(['status'=>"Notify"])->count();
     $countBelum = Laporan::find()->where(['status'=>"Sedang Diproses"])->count();
 
 ?>

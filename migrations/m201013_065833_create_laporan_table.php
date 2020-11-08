@@ -33,7 +33,7 @@ class m201013_065833_create_laporan_table extends Migration
             'laporan',
             'pelapor_id',
             'pelapor',
-            'id',
+            'id'
         );
 
         $this->createIndex(
@@ -47,7 +47,7 @@ class m201013_065833_create_laporan_table extends Migration
             'laporan',
             'jenis_kasus_id',
             'jenis_kasus',
-            'id', 
+            'id'
         );
     }
 
