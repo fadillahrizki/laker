@@ -539,6 +539,7 @@ class LaporanController extends Controller
     public function actionDeleteBelum($id)
     {
         $this->findModel($id)->delete();
+        Yii::$app->session->addFlash("success", "Menghapus laporan belum selesai sukses!");
 
         return $this->redirect(['belum-selesai']);
     }
@@ -547,12 +548,16 @@ class LaporanController extends Controller
     {
         $this->findModel($id)->delete();
 
+        Yii::$app->session->addFlash("success", "Menghapus laporan baru sukses!");
+
         return $this->redirect(['baru']);
     }
 
     public function actionDeleteSelesai($id)
     {
         $this->findModel($id)->delete();
+
+        Yii::$app->session->addFlash("success", "Menghapus laporan selesai selesai sukses!");
 
         return $this->redirect(['selesai']);
     }
