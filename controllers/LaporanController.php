@@ -12,6 +12,7 @@ use app\models\Otp;
 use app\models\Pelapor;
 use app\models\Pengaturan;
 use app\models\Terlapor;
+use app\widgets\Alert;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -533,6 +534,27 @@ class LaporanController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDeleteBelum($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['belum-selesai']);
+    }
+
+    public function actionDeleteBaru($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['baru']);
+    }
+
+    public function actionDeleteSelesai($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['selesai']);
     }
 
     /**

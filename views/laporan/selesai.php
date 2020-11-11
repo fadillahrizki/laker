@@ -11,6 +11,16 @@ $this->title = 'Laporan Selesai';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<script>
+    function delMod(){
+        if(confirm("Apakah anda yakin ingin menghapus ini ?")){
+            return true
+        }else{
+            return false
+        }
+    }
+</script>
+
 
 <div class="laporan-index">
 
@@ -46,8 +56,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a('<span class="btn bg-highlight font-900" style="margin:0 12px;">Edit</span>', ['selesai-detail', 'id' => $model['id']]);
                         },
                         'delete' => function($id, $model) {
-                            return Html::a('Hapus', ['delete', 'id' => $model->id], [
+                            return Html::a('Hapus', ['delete-selesai', 'id' => $model->id], [
                                 'class' => 'btn bg-red1-dark font-900',
+                                'onclick'=>'return delMod()'
                             ]);
                         },
                     ]

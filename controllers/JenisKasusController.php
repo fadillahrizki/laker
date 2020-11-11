@@ -65,7 +65,8 @@ class JenisKasusController extends Controller
         $model = new JenisKasus();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->addFlash("success", "Pembuatan jenis kasus sukses!");
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -85,7 +86,8 @@ class JenisKasusController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->addFlash("success", "Edit jenis kasus sukses!");
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -103,6 +105,8 @@ class JenisKasusController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+
+        Yii::$app->session->addFlash("success", "Menghapus jenis kasus sukses!");
 
         return $this->redirect(['index']);
     }

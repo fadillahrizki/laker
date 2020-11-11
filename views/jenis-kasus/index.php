@@ -9,7 +9,28 @@ use yii\grid\GridView;
 
 $this->title = 'Semua Jenis Kasus';
 $this->params['breadcrumbs'][] = $this->title;
-?>
+if($success = Yii::$app->session->getFlash("success")):
+    
+    ?>
+    
+        <div class="ml-3 mr-3 alert alert-small rounded-s shadow-xl bg-green1-dark" role="alert">
+            <span><i class="fa fa-check"></i></span>
+            <strong><?=$success[0]?></strong>
+            <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>    
+    
+    <?php endif; ?>
+
+<script>
+    function delMod(){
+        if(confirm("Apakah anda yakin ingin menghapus ini ?")){
+            return true
+        }else{
+            return false
+        }
+    }
+</script>
+
 <div class="jenis-kasus-index">
 
     <div class="card card-style rounded-0">
@@ -39,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return Html::a('<span class="btn bg-highlight font-900" style="margin:0 12px;">Edit</span>', $url);
                             },
                             'delete' => function($url) {
-                                return Html::a('<span class="btn bg-red1-dark font-900">Hapus</span>', $url);
+                                return Html::a('<span class="btn bg-red1-dark font-900">Hapus</span>', $url,['onclick'=>'return delMod()']);
                             }
                         ]
                     ],

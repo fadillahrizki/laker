@@ -12,7 +12,24 @@ $this->title = "Laporan Baru : $model->id";
 \yii\web\YiiAsset::register($this);
 
 ?>
+
+<script>
+    function delMod(){
+        if(confirm("Apakah anda yakin ingin menghapus ini ?")){
+            return true
+        }else{
+            return false
+        }
+    }
+</script>
+
 <div class="laporan-view">
+
+    <div class="card card-style rounded-0">
+        <div class="content">
+            <?= Html::a('Hapus', ['delete-baru', 'id' => $model->id], ['class' => 'btn shadow-xl btn-m bg-red1-light font-900', 'onclick'=>"return delMod()"]) ?>
+        </div>
+    </div>
 
     <div class="card card-style rounded-0">
         <div class="content">
@@ -161,4 +178,7 @@ $this->title = "Laporan Baru : $model->id";
 <script>
     ClassicEditor
         .create( document.querySelector( '#editor' ) )
+
+    
+
 </script>
