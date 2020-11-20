@@ -43,7 +43,7 @@ AppAsset::register($this);
             <div class="card card-style">
                 <div class="content">
                     <h2 class="color-highlight">
-                        <?=isset($this->title) ? $this->title : "Laker Labura"?>
+                        <?=isset($this->title) ? $this->title : "Siokap Labura"?>
                     </h2>
                 </div>
             </div>
