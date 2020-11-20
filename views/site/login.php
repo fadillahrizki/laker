@@ -2,7 +2,7 @@
 
 use yii\widgets\ActiveForm;
 
-$this->title = "Login Laker Labura";
+$this->title = "Login Siokap Labura";
 
 $form = ActiveForm::begin();
 
