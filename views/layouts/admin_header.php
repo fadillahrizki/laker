@@ -8,13 +8,13 @@ use yii\helpers\Url;
 
 ?>
     <div class="header header-fixed header-logo-app">
-        <a href="/" class="header-title">LAKER LABURA</a>
+        <a href="/" class="header-title">SIOKAP LABURA</a>
         <a href="#" id="btn-sb" class="header-icon header-icon-1"><i class="fas fa-bars"></i></a>
     </div>
     
     <div id="menu-main" class="menu-box-left bg-white" style="position:absolute;display:inline-block;" data-menu-width="260">  
          <div class="menu-header">
-            <a href="/" class="color-dark1-dark font-900">LAKER LABURA</a>
+            <a href="/" class="color-dark1-dark font-900">SIOKAP LABURA</a>
         </div>
 
         <div class="menu-logo text-center">
