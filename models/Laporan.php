@@ -55,7 +55,9 @@ class Laporan extends \yii\db\ActiveRecord
             'kronologi' => 'Kronologi',
             'penyelesaian' => 'Penyelesaian',
             'status' => 'Status',
-            'laporan_masuk' => 'Laporan Masuk',
+            'laporan_masuk' => 'Tanggal Masuk',
+            'laporan_selesai' => 'Tanggal Selesai',
+            'laporan_arsip' => 'Tanggal Diarsipkan',
         ];
     }
 
