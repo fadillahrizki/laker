@@ -21,6 +21,16 @@ if($success = Yii::$app->session->getFlash("success")):
     
     <?php endif; ?>
 
+    <script>
+    function delMod(){
+        if(confirm("Apakah anda yakin ingin menghapus ini ?")){
+            return true
+        }else{
+            return false
+        }
+    }
+</script>
+
 <div class="laporan-index">
 
 <div class="card card-style rounded-0">
@@ -65,6 +75,7 @@ if($success = Yii::$app->session->getFlash("success")):
                         'delete' => function($id, $model) {
                             return Html::a('Hapus', ['delete-arsip', 'id' => $model['id']], [
                                 'class' => 'btn bg-red1-dark font-900',
+                                'onclick'=> 'return delMod()'
                             ]);
                         },
                     ]
