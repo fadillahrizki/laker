@@ -33,7 +33,8 @@ AppAsset::register($this);
 
     <div class="card card-style text-center mx-auto mt-5" style="width:350px">
         <div class="content">
-            <h2><?=$this->title?></h2>
+            <img width="100" src="<?=Url::to(['/images/logo-only.png']) ?>">
+            <h2>SIOKAP LABURA</h2>
         </div>
     </div>
 
