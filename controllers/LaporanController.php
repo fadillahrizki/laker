@@ -570,6 +570,14 @@ class LaporanController extends Controller
         return $this->redirect(['belum-selesai']);
     }
 
+    public function actionDeleteArsip($id)
+    {
+        $this->findModel($id)->delete();
+        Yii::$app->session->addFlash("success", "Menghapus laporan Arsip sukses!");
+
+        return $this->redirect(['arsip']);
+    }
+
     public function actionDeleteBaru($id)
     {
         $this->findModel($id)->delete();

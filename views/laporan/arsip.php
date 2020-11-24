@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a('<span class="btn bg-highlight font-900" style="margin:0 12px;">Edit</span>', ['arsip-detail', 'id' => $model['id']]);
                         },
                         'delete' => function($id, $model) {
-                            return Html::a('Hapus', ['delete', 'id' => $model['id']], [
+                            return Html::a('Hapus', ['delete-arsip', 'id' => $model['id']], [
                                 'class' => 'btn bg-red1-dark font-900',
                             ]);
                         },
