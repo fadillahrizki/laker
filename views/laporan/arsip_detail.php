@@ -16,6 +16,23 @@ $this->title = "Laporan Diarsipkan : $model->id";
 
     <div class="card card-style rounded-0">
         <div class="content">
+            <h4>Laporan</h4>
+            <p></p>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Laporan Masuk</th>
+                    <td width="70%"><?=$model->laporan_masuk?></td>
+                </tr>
+                <tr>
+                    <th>Laporan Arsip</th>
+                    <td width="70%"><?=$model->laporan_arsip?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="card card-style rounded-0">
+        <div class="content">
             <h4>Pelapor</h4>
             <p></p>
             <table class="table table-bordered table-striped">

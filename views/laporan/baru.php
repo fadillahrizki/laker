@@ -49,6 +49,10 @@ if($success = Yii::$app->session->getFlash("success")):
                     "value"=>"jenisKasus.nama"
                 ],
                 [
+                    'attribute'=>'laporan_masuk',
+                    "value"=>"laporan_masuk"
+                ],
+                [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{update}',
                     'buttons' => [

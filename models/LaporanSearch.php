@@ -20,7 +20,7 @@ class LaporanSearch extends Laporan
     {
         return [
             [['id', 'pelapor_id', 'jenis_kasus_id'], 'integer'],
-            [['kronologi', 'status','nomor_hp','pelapor','jenisKasus'], 'safe'],
+            [['kronologi', 'status','nomor_hp','pelapor','jenisKasus','laporan_masuk','laporan_selesai','laporan_arsip'], 'safe'],
         ];
     }
 
@@ -77,6 +77,9 @@ class LaporanSearch extends Laporan
 
         $query->andFilterWhere(['like','pelapor.nama',$this->pelapor])
             ->andFilterWhere(['like','pelapor.nomor_hp',$this->nomor_hp])
+            ->andFilterWhere(['like','laporan_masuk',$this->laporan_masuk])
+            ->andFilterWhere(['like','laporan_selesai',$this->laporan_selesai])
+            ->andFilterWhere(['like','laporan_arsip',$this->laporan_arsip])
             ->andFilterWhere(['like','jenisKasus.nama',$this->jenisKasus]);
 
         return $dataProvider;

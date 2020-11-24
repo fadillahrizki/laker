@@ -320,7 +320,13 @@ class LaporanController extends Controller
 
         if($Arsip->load($request->post())){
             $laporan = $this->findModel($Arsip->laporan_id);
+
             $laporan->status = "Diarsipkan";
+            $tz = 'Asia/Jakarta';
+            $dt = new DateTime("now", new DateTimeZone($tz));
+            $timestamp = $dt->format('Y-m-d H:i:s');
+            $laporan->laporan_arsip = $timestamp;
+
             if($Arsip->save() && $laporan->save()){
                 $client = new Client();
 
@@ -354,6 +360,11 @@ class LaporanController extends Controller
         $request = Yii::$app->request;
 
         if($model->load($request->post())){
+
+            $tz = 'Asia/Jakarta';
+            $dt = new DateTime("now", new DateTimeZone($tz));
+            $timestamp = $dt->format('Y-m-d H:i:s');
+            $model->laporan_selesai = $timestamp;
             
             if($model->save()){
                 $client = new Client();

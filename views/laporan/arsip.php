@@ -39,6 +39,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     "value"=>"jenisKasus.nama"
                 ],
                 [
+                    'attribute'=>'laporan_masuk',
+                    "value"=>"laporan_masuk"
+                ],
+                [
+                    'attribute'=>'laporan_arsip',
+                    "value"=>"laporan_arsip"
+                ],
+                [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{update}{delete}',
                     'buttons' => [
