@@ -281,6 +281,9 @@ class LaporanController extends Controller
 
         $query = Yii::$app->request->queryParams;
         $dataProvider = $searchModel->search($query);
+        $dataProvider->sort->attributes['created_at'] = [ 
+            'default' => SORT_DESC
+        ]; 
 
         return $this->render('baru', [
             'searchModel' => $searchModel,
@@ -400,6 +403,10 @@ class LaporanController extends Controller
         $query = Yii::$app->request->queryParams;
         $dataProvider = $searchModel->search($query);
 
+        $dataProvider->sort->attributes['created_at'] = [ 
+            'default' => SORT_DESC
+        ]; 
+
         return $this->render('belum_selesai', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -430,6 +437,10 @@ class LaporanController extends Controller
         $query = Yii::$app->request->queryParams;
         $dataProvider = $searchModel->search($query);
 
+        $dataProvider->sort->attributes['laporan_selesai'] = [ 
+            'default' => SORT_DESC
+        ]; 
+
         return $this->render('selesai', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -459,6 +470,10 @@ class LaporanController extends Controller
 
         $query = Yii::$app->request->queryParams;
         $dataProvider = $searchModel->search($query);
+
+        $dataProvider->sort->attributes['laporan_arsip'] = [ 
+            'default' => SORT_DESC
+        ]; 
 
         return $this->render('arsip', [
             'searchModel' => $searchModel,
