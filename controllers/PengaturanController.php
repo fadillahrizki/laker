@@ -37,7 +37,14 @@ class PengaturanController extends Controller
     {
         $model = Pengaturan::find()->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if(isset($_FILES['Pengaturan']['name']['alarm_file']))
+            {
+                $filename = 'uploads/'.$_FILES['Pengaturan']['name']['alarm_file'];
+                copy($_FILES['Pengaturan']['tmp_name']['alarm_file'],$filename);
+                $model->alarm_file = $filename;
+            }
+            $model->save();
             Yii::$app->session->addFlash("success", "Pengaturan berhasil disimpan!");
             return $this->redirect(['index']);
         }
@@ -69,7 +76,14 @@ class PengaturanController extends Controller
     {
         $model = new Pengaturan();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if(isset($_FILES['Pengaturan']['alarm_file']))
+            {
+                $filename = 'uploads/'.$_FILES['Pengaturan']['alarm_file']['name'];
+                copy($_FILES['Pengaturan']['alarm_file']['tmp_name'],$filename);
+                $model->alarm_file = $filename;
+            }
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

@@ -13,7 +13,9 @@ use yii\widgets\ActiveForm;
 <div class="card card-style rounded-0">
     <div class="content">
 
-        <?php $form = ActiveForm::begin(); ?>
+        <?php $form = ActiveForm::begin(['options'=>[
+            'enctype' => 'multipart/form-data'
+        ]]); ?>
 
         <?= $form->field($model, 'sms_user')->textInput(['maxlength' => true]) ?>
 
@@ -32,6 +34,8 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'konten_arsip')->textarea(['rows' => 6]) ?>
 
         <?= $form->field($model, 'konten_kembali')->textarea(['rows' => 6]) ?>
+
+        <?= $form->field($model, 'alarm_file')->input('file',['style'=>'height:auto'])->label('Alarm File '.($model->alarm_file?' : '.$model->alarm_file:'')) ?>
 
         <div class="form-group">
             <?= Html::submitButton('Simpan', ['class' => 'btn shadow-xl btn-m bg-highlight font-900']) ?>

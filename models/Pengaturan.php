@@ -34,7 +34,7 @@ class Pengaturan extends \yii\db\ActiveRecord
     {
         return [
             [['konten_user_masuk', 'konten_user_tindak_lanjut', 'konten_selesai', 'konten_kembali','konten_arsip'], 'string'],
-            [['sms_user', 'sms_password', 'sms_no_admin', 'konten_admin'], 'string', 'max' => 255],
+            [['sms_user', 'sms_password', 'sms_no_admin', 'konten_admin', 'alarm_file'], 'string', 'max' => 255],
         ];
     }
 
@@ -54,6 +54,7 @@ class Pengaturan extends \yii\db\ActiveRecord
             'konten_selesai' => 'Konten Selesai',
             'konten_arsip' => 'Konten Arsip',
             'konten_kembali' => 'Konten Kembali',
+            'alarm_file' => 'Alarm File',
         ];
     }
 }

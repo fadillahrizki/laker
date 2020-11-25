@@ -6,11 +6,12 @@
 use yii\helpers\Html;
 use app\assets\AppAsset;
 use yii\helpers\Url;
+use app\models\Pengaturan;
 
 if (Yii::$app->user->isGuest) {
     Yii::$app->response->redirect(Url::to(['site/login'], true));
 }    
-
+$pengaturan = Pengaturan::find()->one();
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -64,6 +65,11 @@ AppAsset::register($this);
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <?php if($this->title == "Home"): ?>
 <script type="text/javascript">
+function playAlarm()
+{
+  var audio = new Audio("<?= Url::to([$pengaturan->alarm_file]) ?>");
+  audio.play()
+}
 $(document).ready(()=>{
     setInterval(polling,'5000')
 })
@@ -77,6 +83,7 @@ function polling()
         dataType: 'json'
     })
     .done(function(response) {
+        if(response.length) playAlarm()
         if(response.length > 1)
         {
             Swal.fire({
